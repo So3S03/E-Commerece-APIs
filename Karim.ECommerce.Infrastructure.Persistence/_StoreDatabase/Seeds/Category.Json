@@ -1,0 +1,90 @@
+[
+    {
+        "Id": 0,
+        "CategoryName": "Electronics",
+        "NormalizedName": "ELECTRONICS",
+        "MainImage": "Images/Categories/Electronics.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Devices & Appliances",
+        "NormalizedName": "DEVICES & APPLIANCES",
+        "MainImage": "Images/Categories/Appliances.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Fashion",
+        "NormalizedName": "FASHION",
+        "MainImage": "Images/Categories/Fashion.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Beauty & Personal Care",
+        "NormalizedName": "BEAUTY & PERSONAL CARE",
+        "MainImage": "Images/Categories/Beauty.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Sports & Outdoors",
+        "NormalizedName": "SPORTS & OUTDOORS",
+        "MainImage": "Images/Categories/Sports.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Toys & Games",
+        "NormalizedName": "TOYS & GAMES",
+        "MainImage": "Images/Categories/Toys.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Automotive",
+        "NormalizedName": "AUTOMOTIVE",
+        "MainImage": "Images/Categories/Automotive.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Books",
+        "NormalizedName": "BOOKS",
+        "MainImage": "Images/Categories/Books.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Health & Wellness",
+        "NormalizedName": "HEALTH & WELLNESS",
+        "MainImage": "Images/Categories/Health.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Supermarket",
+        "NormalizedName": "SUPERMARKET",
+        "MainImage": "Images/Categories/Supermarket.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "CategoryName": "Baby Products",
+        "NormalizedName": "BABY PRODUCTS",
+        "MainImage": "Images/Categories/Baby.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    }
+]

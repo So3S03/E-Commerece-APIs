@@ -1,0 +1,815 @@
+[
+    {
+        "Id": 0,
+        "BrandName": "Samsung",
+        "NormalizedName": "SAMSUNG",
+        "MainImage": "Images/Brands/Samsung.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Apple",
+        "NormalizedName": "APPLE",
+        "MainImage": "Images/Brands/Apple.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Xiaomi",
+        "NormalizedName": "XIAOMI",
+        "MainImage": "Images/Brands/Xiaomi.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Lenovo",
+        "NormalizedName": "LENOVO",
+        "MainImage": "Images/Brands/Lenovo.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Oppo",
+        "NormalizedName": "OPPO",
+        "MainImage": "Images/Brands/Oppo.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Huawei",
+        "NormalizedName": "HUAWEI",
+        "MainImage": "Images/Brands/Huawei.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Canon",
+        "NormalizedName": "CANON",
+        "MainImage": "Images/Brands/Canon.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Honor",
+        "NormalizedName": "HONOR",
+        "MainImage": "Images/Brands/Honor.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Infinix",
+        "NormalizedName": "INFINIX",
+        "MainImage": "Images/Brands/Infinix.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Sony",
+        "NormalizedName": "SONY",
+        "MainImage": "Images/Brands/Sony.png",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "LG",
+        "NormalizedName": "LG",
+        "MainImage": "Images/Brands/LG.png",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Panasonic",
+        "NormalizedName": "PANASONIC",
+        "MainImage": "Images/Brands/Panasonic.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Toshiba",
+        "NormalizedName": "TOSHIBA",
+        "MainImage": "Images/Brands/Toshiba.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Hp",
+        "NormalizedName": "HP",
+        "MainImage": "Images/Brands/Hp.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Dell",
+        "NormalizedName": "DELL",
+        "MainImage": "Images/Brands/Dell.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Philips",
+        "NormalizedName": "PHILIPS",
+        "MainImage": "Images/Brands/Philips.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Nike",
+        "NormalizedName": "NIKE",
+        "MainImage": "Images/Brands/Nike.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Adidas",
+        "NormalizedName": "ADIDAS",
+        "MainImage": "Images/Brands/Adidas.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Puma",
+        "NormalizedName": "PUMA",
+        "MainImage": "Images/Brands/Puma.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "DeFacto",
+        "NormalizedName": "DEFACTO",
+        "MainImage": "Images/Brands/DeFacto.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Skechers",
+        "NormalizedName": "SKECHERS",
+        "MainImage": "Images/Brands/Skechers.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Nileton",
+        "NormalizedName": "NILETON",
+        "MainImage": "Images/Brands/Nileton.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Dejavu",
+        "NormalizedName": "DEJAVU",
+        "MainImage": "Images/Brands/Dejavu.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Tommy Hilfiger",
+        "NormalizedName": "TOMMY HILFIGER",
+        "MainImage": "Images/Brands/TommyHilfiger.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Cottonil",
+        "NormalizedName": "COTTONIL",
+        "MainImage": "Images/Brands/Cottonil.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Activ",
+        "NormalizedName": "ACTIV",
+        "MainImage": "Images/Brands/Activ.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Vgr",
+        "NormalizedName": "VGR",
+        "MainImage": "Images/Brands/Vgr.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "BrAun",
+        "NormalizedName": " BRAUN",
+        "MainImage": "Images/Brands/Braun.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Shaan",
+        "NormalizedName": " SHAAN",
+        "MainImage": "Images/Brands/Shaan.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Sheglam",
+        "NormalizedName": " SHEGLAM",
+        "MainImage": "Images/Brands/Sheglam.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Raw African",
+        "NormalizedName": " RAW AFRICAN",
+        "MainImage": "Images/Brands/RawAfrican.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Noje",
+        "NormalizedName": "NOJE",
+        "MainImage": "Images/Brands/Noje.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Soul And More",
+        "NormalizedName": "SOUL AND MORE",
+        "MainImage": "Images/Brands/Soulandmore.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Eva",
+        "NormalizedName": "EVA",
+        "MainImage": "Images/Brands/EVA.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Dermactive",
+        "NormalizedName": "DERMACTIVE",
+        "MainImage": "Images/Brands/Dermactive.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Kiko",
+        "NormalizedName": "KIKO",
+        "MainImage": "Images/Brands/KIKO.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Bosch",
+        "NormalizedName": " BOSCH",
+        "MainImage": "Images/Brands/Bosch.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Trueval",
+        "NormalizedName": " TRUEVAL",
+        "MainImage": "Images/Brands/Trueval.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Cluc",
+        "NormalizedName": " CLUC",
+        "MainImage": "Images/Brands/Cluc.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Pasabahce",
+        "NormalizedName": " PASABAHCE",
+        "MainImage": "Images/Brands/Pasabahce.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "More Cottons",
+        "NormalizedName": " MORE COTTONS",
+        "MainImage": "Images/Brands/MoreCottons.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Vileda",
+        "NormalizedName": " VILEDA",
+        "MainImage": "Images/Brands/Vileda.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Snooze",
+        "NormalizedName": " SNOOZE",
+        "MainImage": "Images/Brands/Snooze.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Black Decker",
+        "NormalizedName": " BLACK DECKER",
+        "MainImage": "Images/Brands/BlackDecker.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Englander",
+        "NormalizedName": " BLACK DECKER",
+        "MainImage": "Images/Brands/Englander.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+
+    {
+        "Id": 0,
+        "BrandName": "Molfix",
+        "NormalizedName": " MOLFIX",
+        "MainImage": "Images/Brands/molfix.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Finebaby",
+        "NormalizedName": "FINEBABY",
+        "MainImage": "Images/Brands/FineBaby.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Chicco",
+        "NormalizedName": "CHICCO",
+        "MainImage": "Images/Brands/Chicco.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Philips Avent",
+        "NormalizedName": "PHILIPS AVENT",
+        "MainImage": "Images/Brands/PhilipsAvent.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Super Kids",
+        "NormalizedName": "SUPER KIDS",
+        "MainImage": "Images/Brands/SuperKids.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Petit Bebe",
+        "NormalizedName": "PETIT BEBE",
+        "MainImage": "Images/Brands/PetitBebe.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Sanosan",
+        "NormalizedName": "SANOSAN",
+        "MainImage": "Images/Brands/Sanosan.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Bubbles",
+        "NormalizedName": "BUBBLES",
+        "MainImage": "Images/Brands/Bubbles.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Lipton",
+        "NormalizedName": "LIPTON",
+        "MainImage": "Images/Brands/Lipton.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Persil",
+        "NormalizedName": "PERSIL",
+        "MainImage": "Images/Brands/Persil.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Al-Doha",
+        "NormalizedName": "AL-DOHA",
+        "MainImage": "Images/Brands/AlDoha.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Oxi",
+        "NormalizedName": "OXI",
+        "MainImage": "Images/Brands/Oxi.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Juhayna",
+        "NormalizedName": "JUHAYNA",
+        "MainImage": "Images/Brands/Juhayna.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Familia",
+        "NormalizedName": "FAMILIA",
+        "MainImage": "Images/Brands/Familia.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Abu Auf",
+        "NormalizedName": "ABU AUF",
+        "MainImage": "Images/Brands/AbuAuf.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "White",
+        "NormalizedName": "WHITE",
+        "MainImage": "Images/Brands/White.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Lametna",
+        "NormalizedName": "LAMETNA",
+        "MainImage": "Images/Brands/Lametna.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Nilco",
+        "NormalizedName": "NILCO",
+        "MainImage": "Images/Brands/Nilco.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Lego",
+        "NormalizedName": "LEGO",
+        "MainImage": "Images/Brands/Lego.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Bestway",
+        "NormalizedName": "BESTWAY",
+        "MainImage": "Images/Brands/Bestway.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Intex",
+        "NormalizedName": "INTEX",
+        "MainImage": "Images/Brands/Intex.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Lol",
+        "NormalizedName": " LOL",
+        "MainImage": "Images/Brands/Lol.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "2ool A Meme",
+        "NormalizedName": "2OOL A MEME",
+        "MainImage": "Images/Brands/2oolAMeme.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "XiuWoo",
+        "NormalizedName": "XIUWOO",
+        "MainImage": "Images/Brands/XiuWoo.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Smart",
+        "NormalizedName": "SMART",
+        "MainImage": "Images/Brands/Smart.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Barbie",
+        "NormalizedName": "BARBIE",
+        "MainImage": "Images/Brands/Barbie.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Total Energies",
+        "NormalizedName": "TOTAL ENERGIES",
+        "MainImage": "Images/Brands/Total.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Shell",
+        "NormalizedName": "SHELL",
+        "MainImage": "Images/Brands/Shell.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Elf",
+        "NormalizedName": "ELF",
+        "MainImage": "Images/Brands/Elf.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Petronas",
+        "NormalizedName": "PETRONAS",
+        "MainImage": "Images/Brands/Petronas.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Mobil",
+        "NormalizedName": "MOBIL",
+        "MainImage": "Images/Brands/Mobil.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Hankook",
+        "NormalizedName": "HANKOOK",
+        "MainImage": "Images/Brands/Hankook.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Pirelli",
+        "NormalizedName": "PIRELLI",
+        "MainImage": "Images/Brands/Pirelli.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Pioneer",
+        "NormalizedName": "PIONEER",
+        "MainImage": "Images/Brands/Pioneer.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Centrum",
+        "NormalizedName": "CENTRUM",
+        "MainImage": "Images/Brands/Centrum.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Durex",
+        "NormalizedName": "DUREX",
+        "MainImage": "Images/Brands/Durex.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "RedRex",
+        "NormalizedName": "REDREX",
+        "MainImage": "Images/Brands/RedRex.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Now",
+        "NormalizedName": "NOW",
+        "MainImage": "Images/Brands/Now.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Limitless Alpha",
+        "NormalizedName": "LIMITLESS Alpha",
+        "MainImage": "Images/Brands/Limitless.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Fine Care",
+        "NormalizedName": "FINE CARE",
+        "MainImage": "Images/Brands/FineCare.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Fresh Buzz",
+        "NormalizedName": "FRESH BUZZ",
+        "MainImage": "Images/Brands/FreshBuzz.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Babolat",
+        "NormalizedName": "BABOLAT",
+        "MainImage": "Images/Brands/Babolat.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Body Sculpture",
+        "NormalizedName": "BODY SCULPTURE",
+        "MainImage": "Images/Brands/BodySculpture.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Decathion",
+        "NormalizedName": "DECATHION",
+        "MainImage": "Images/Brands/Decathion.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "SportQ",
+        "NormalizedName": "SPORTQ",
+        "MainImage": "Images/Brands/SportQ.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+
+
+    {
+        "Id": 0,
+        "BrandName": "Casio",
+        "NormalizedName": "CASIO",
+        "MainImage": "Images/Brands/Casio.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Faber Castell",
+        "NormalizedName": "FABER CASTELL",
+        "MainImage": "Images/Brands/FaberCastell.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Staedtler",
+        "NormalizedName": "Staedtler",
+        "MainImage": "Images/Brands/Staedtler.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "M&G",
+        "NormalizedName": "M&G",
+        "MainImage": "Images/Brands/MG.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Deli",
+        "NormalizedName": "DELI",
+        "MainImage": "Images/Brands/Deli.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "OKA",
+        "NormalizedName": "OKA",
+        "MainImage": "Images/Brands/OKA.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Stabilo",
+        "NormalizedName": "STABILO",
+        "MainImage": "Images/Brands/Stabilo.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Rotring",
+        "NormalizedName": "ROTRING",
+        "MainImage": "Images/Brands/Rotring.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    },
+    {
+        "Id": 0,
+        "BrandName": "Uni-Ball",
+        "NormalizedName": "UNI-BALL",
+        "MainImage": "Images/Brands/UniBall.avif",
+        "CreatedBy": "1",
+        "UpdatedBy": "1"
+    }
+]

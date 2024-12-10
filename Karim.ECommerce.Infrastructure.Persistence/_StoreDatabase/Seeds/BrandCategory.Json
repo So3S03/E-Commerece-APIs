@@ -1,0 +1,467 @@
+[
+    {
+        "CategoryId": 1,
+        "BrandId" : 1
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 2
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 3
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 4
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 5
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 6
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 7
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 8
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 9
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 10
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 11
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 12
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 13
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 14
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 15
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 16
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 27
+    },
+    {
+        "CategoryId": 1,
+        "BrandId": 28   
+    },
+
+
+    {
+        "CategoryId": 2,
+        "BrandId": 37
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 38
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 39
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 40
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 41
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 42
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 43
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 44
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 45
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 12
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 13
+    },
+    {
+        "CategoryId": 2,
+        "BrandId": 16
+    },
+
+
+
+    {
+        "CategoryId": 3,
+        "BrandId": 17
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 18
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 19
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 20
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 21
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 22
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 23
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 24
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 25
+    },
+    {
+        "CategoryId": 3,
+        "BrandId": 26
+    },
+
+
+
+    {
+        "CategoryId": 4,
+        "BrandId": 27
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 28
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 29
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 30
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 31
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 32
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 33
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 34
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 35
+    },
+    {
+        "CategoryId": 4,
+        "BrandId": 36
+    },
+
+
+
+    {
+        "CategoryId": 5,
+        "BrandId": 17
+    },
+    {
+        "CategoryId": 5,
+        "BrandId": 18
+    },
+    {
+        "CategoryId": 5,
+        "BrandId": 19
+    },
+    {
+        "CategoryId": 5,
+        "BrandId": 87
+    },
+    {
+        "CategoryId": 5,
+        "BrandId": 88
+    },
+    {
+        "CategoryId": 5,
+        "BrandId": 89
+    },
+    {
+        "CategoryId": 5,
+        "BrandId": 90
+    },
+
+
+
+    {
+        "CategoryId": 6,
+        "BrandId": 63
+    },
+    {
+        "CategoryId": 6,
+        "BrandId": 64
+    },
+    {
+        "CategoryId": 6,
+        "BrandId": 65
+    },
+    {
+        "CategoryId": 6,
+        "BrandId": 66
+    },
+    {
+        "CategoryId": 6,
+        "BrandId": 67
+    },
+    {
+        "CategoryId": 6,
+        "BrandId": 68
+    },
+    {
+        "CategoryId": 6,
+        "BrandId": 69
+    },
+    {
+        "CategoryId": 6,
+        "BrandId": 70
+    },
+    {
+        "CategoryId": 6,
+        "BrandId": 71
+    },
+
+
+
+    {
+        "CategoryId": 7,
+        "BrandId": 72
+    },
+    {
+        "CategoryId": 7,
+        "BrandId": 73
+    },
+    {
+        "CategoryId": 7,
+        "BrandId": 74
+    },
+    {
+        "CategoryId": 7,
+        "BrandId": 75
+    },
+    {
+        "CategoryId": 7,
+        "BrandId": 76
+    },
+    {
+        "CategoryId": 7,
+        "BrandId": 77
+    },
+    {
+        "CategoryId": 7,
+        "BrandId": 78
+    },
+    {
+        "CategoryId": 7,
+        "BrandId": 79
+    },
+    {
+        "CategoryId": 7,
+        "BrandId": 37
+    },
+
+
+
+    {
+        "CategoryId": 8,
+        "BrandId": 91
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 92
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 93
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 94
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 95
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 96
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 97
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 98
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 99
+    },
+    {
+        "CategoryId": 8,
+        "BrandId": 12
+    },
+
+
+
+    {
+        "CategoryId": 9,
+        "BrandId": 80
+    },
+    {
+        "CategoryId": 9,
+        "BrandId": 81
+    },
+    {
+        "CategoryId": 9,
+        "BrandId": 82
+    },
+    {
+        "CategoryId": 9,
+        "BrandId": 83
+    },
+    {
+        "CategoryId": 9,
+        "BrandId": 84
+    },
+    {
+        "CategoryId": 9,
+        "BrandId": 85
+    },
+    {
+        "CategoryId": 9,
+        "BrandId": 86
+    },
+
+
+
+    {
+        "CategoryId": 10,
+        "BrandId": 54
+    },
+    {
+        "CategoryId": 10,
+        "BrandId": 55
+    },
+    {
+        "CategoryId": 10,
+        "BrandId": 56
+    },
+    {
+        "CategoryId": 10,
+        "BrandId": 57
+    },
+    {
+        "CategoryId": 10,
+        "BrandId": 58
+    },
+    {
+        "CategoryId": 10,
+        "BrandId": 59
+    },
+    {
+        "CategoryId": 10,
+        "BrandId": 60
+    },
+    {
+        "CategoryId": 10,
+        "BrandId": 61
+    },
+    {
+        "CategoryId": 10,
+        "BrandId": 62
+    },
+
+
+
+    {
+        "CategoryId": 11,
+        "BrandId": 46
+    },
+    {
+        "CategoryId": 11,
+        "BrandId": 47
+    },
+    {
+        "CategoryId": 11,
+        "BrandId": 48
+    },
+    {
+        "CategoryId": 11,
+        "BrandId": 49
+    },
+    {
+        "CategoryId": 11,
+        "BrandId": 50
+    },
+    {
+        "CategoryId": 11,
+        "BrandId": 51
+    },
+    {
+        "CategoryId": 11,
+        "BrandId": 52
+    },
+    {
+        "CategoryId": 11,
+        "BrandId": 53
+    }
+]

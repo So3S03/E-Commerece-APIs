@@ -1,0 +1,6 @@
+@Karim.ECommerce.APIs_HostAddress = http://localhost:5013
+
+GET {{Karim.ECommerce.APIs_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
