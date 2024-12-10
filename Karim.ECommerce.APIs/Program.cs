@@ -1,11 +1,12 @@
-
 using Karim.ECommerce.APIs.Controllers;
 using Karim.ECommerce.APIs.Controllers.Errors;
 using Karim.ECommerce.APIs.Extensions;
 using Karim.ECommerce.APIs.Middlewares;
+using Karim.ECommerce.APIs.Services;
 using Karim.ECommerce.Application;
 using Karim.ECommerce.Domain.Contracts;
 using Karim.ECommerce.Infrastructure.Persistence;
+using Karim.ECommerce.Shared.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -44,6 +45,9 @@ namespace Karim.ECommerce.APIs
 
             builder.Services.AddPersistenceServices(builder.Configuration);
             builder.Services.AddApplicationServices();
+
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddScoped(typeof(ILoggedInUserService), typeof(LoggedInUserService));
             #endregion
 
             var app = builder.Build();
