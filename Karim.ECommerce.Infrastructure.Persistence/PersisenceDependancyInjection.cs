@@ -1,8 +1,7 @@
-﻿    using Karim.ECommerce.Domain.Contracts;
+﻿using Karim.ECommerce.Domain.Contracts;
 using Karim.ECommerce.Infrastructure.Persistence._StoreDatabase;
 using Karim.ECommerce.Infrastructure.Persistence._StoreDatabase.Interceptors;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
