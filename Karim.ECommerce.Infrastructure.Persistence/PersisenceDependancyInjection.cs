@@ -1,4 +1,4 @@
-﻿using Karim.ECommerce.Domain.Contracts;
+﻿    using Karim.ECommerce.Domain.Contracts;
 using Karim.ECommerce.Infrastructure.Persistence._StoreDatabase;
 using Karim.ECommerce.Infrastructure.Persistence._StoreDatabase.Interceptors;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +13,14 @@ namespace Karim.ECommerce.Infrastructure.Persistence
         //Main Database
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("MainStoreConnectionString")));
+            services.AddDbContext<StoreDbContext>((serviceProvider, options) => 
+            {
+                options
+                .UseSqlServer(configuration.GetConnectionString("MainStoreConnectionString"))
+                .AddInterceptors(serviceProvider.GetRequiredService<CustomSaveChangesInterceptor>());
+            });
+            services.AddScoped(typeof(CustomSaveChangesInterceptor));
             services.AddScoped(typeof(IStoreDbInitializer), typeof(StoreDbInitializer));
-            services.AddScoped(typeof(ISaveChangesInterceptor), typeof(CustomSaveChangesInterceptor));
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork.UnitOfWork));
             return services;
         }
