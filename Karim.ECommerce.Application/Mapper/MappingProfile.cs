@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Karim.ECommerce.Application.Abstraction.Dtos.Products;
+using Karim.ECommerce.Domain.Entities.Carts;
 using Karim.ECommerce.Domain.Entities.Products;
+using Karim.ECommerce.Shared.Dtos.Carts;
 using Karim.ECommerce.Shared.Dtos.Products;
 
 namespace Karim.ECommerce.Application.Mapper
@@ -30,6 +32,10 @@ namespace Karim.ECommerce.Application.Mapper
 
             CreateMap<Category, CategoryInBrandDto>();
 
+
+            //Cart
+            CreateMap<CartItem, CartItemDto>();
+            CreateMap<Cart, CartToReturnDto>();
         }
     }
 }
