@@ -21,7 +21,7 @@ namespace Karim.ECommerce.Infrastructure.Cart_Repository
             return updated ?  customerCart : null;
         }
 
-        public async Task<bool> ClearCart(string id) => await _database.KeyDeleteAsync(id);
+        public async Task<bool> ClearCartAsync(string id) => await _database.KeyDeleteAsync(id);
 
     }
 }

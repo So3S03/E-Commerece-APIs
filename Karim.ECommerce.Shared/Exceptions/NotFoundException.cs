@@ -2,7 +2,7 @@
 {
     public class NotFoundException : ApplicationException
     {
-        public NotFoundException(string name, object key) : base($"The Resource: {name} With Id: ({key}) You Are Try To Get Is Not Found")
+        public NotFoundException(string name, object key) : base($"{name} With Id: ({key}) You Are Try To Get Is Not Found")
         {
             
         }

@@ -4,6 +4,8 @@ namespace Karim.ECommerce.Application.Abstraction.Contracts
 {
     public interface ICartServices
     {
-        Task<CartToReturnDto?> GetUserCart(string? cartId);
+        Task<CartToReturnDto> GetUserCartAsync(string? cartId);
+        Task<CartToReturnDto?> UpdateUserCartAsync(CartToReturnDto? cartToReturnDto);
+        Task ClearUserCartAsync(string? cartId);
     }
 }

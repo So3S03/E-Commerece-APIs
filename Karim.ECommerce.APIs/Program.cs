@@ -45,7 +45,7 @@ namespace Karim.ECommerce.APIs
 
             builder.Services.AddPersistenceServices(builder.Configuration);
             builder.Services.AddInfrastructureServices(builder.Configuration);
-            builder.Services.AddApplicationServices();
+            builder.Services.AddApplicationServices(builder.Configuration);
             #endregion
 
             var app = builder.Build();

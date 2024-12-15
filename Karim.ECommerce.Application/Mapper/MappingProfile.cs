@@ -34,8 +34,8 @@ namespace Karim.ECommerce.Application.Mapper
 
 
             //Cart
-            CreateMap<CartItem, CartItemDto>();
-            CreateMap<Cart, CartToReturnDto>();
+            CreateMap<CartItem, CartItemDto>().ReverseMap();
+            CreateMap<Cart, CartToReturnDto>().ReverseMap();
         }
     }
 }

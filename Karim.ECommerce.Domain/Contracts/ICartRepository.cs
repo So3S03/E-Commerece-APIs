@@ -6,6 +6,6 @@ namespace Karim.ECommerce.Domain.Contracts
     {
         Task<Cart?> GetCartAsync(string id);
         Task<Cart?> UpdateCartAsync(Cart customerCart, TimeSpan CartExpiredTimeSpan);
-        Task<bool> ClearCart(string id);
+        Task<bool> ClearCartAsync(string id);
     }
 }
