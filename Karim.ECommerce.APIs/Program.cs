@@ -5,6 +5,7 @@ using Karim.ECommerce.APIs.Middlewares;
 using Karim.ECommerce.APIs.Services;
 using Karim.ECommerce.Application;
 using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Infrastructure;
 using Karim.ECommerce.Infrastructure.Persistence;
 using Karim.ECommerce.Shared.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -44,10 +45,10 @@ namespace Karim.ECommerce.APIs
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddPersistenceServices(builder.Configuration);
-            builder.Services.AddApplicationServices();
-
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped(typeof(ILoggedInUserService), typeof(LoggedInUserService));
+            builder.Services.AddInfrastructureServices(builder.Configuration);
+            builder.Services.AddApplicationServices(builder.Configuration);
             #endregion
 
             var app = builder.Build();

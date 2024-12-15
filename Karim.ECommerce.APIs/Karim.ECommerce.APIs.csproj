@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Karim.ECommerce.APIs.Controllers\Karim.ECommerce.APIs.Controllers.csproj" />
     <ProjectReference Include="..\Karim.ECommerce.Application\Karim.ECommerce.Application.csproj" />
     <ProjectReference Include="..\Karim.ECommerce.Infrastructure.Persistence\Karim.ECommerce.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\Karim.ECommerce.Infrastructure\Karim.ECommerce.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
