@@ -5,6 +5,7 @@ using Karim.ECommerce.APIs.Extensions;
 using Karim.ECommerce.APIs.Middlewares;
 using Karim.ECommerce.Application;
 using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Infrastructure;
 using Karim.ECommerce.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
@@ -43,7 +44,8 @@ namespace Karim.ECommerce.APIs
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddPersistenceServices(builder.Configuration);
-            builder.Services.AddApplicationServices();
+            builder.Services.AddInfrastructureServices(builder.Configuration);
+            builder.Services.AddApplicationServices(builder.Configuration);
             #endregion
 
             var app = builder.Build();
