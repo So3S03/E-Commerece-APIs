@@ -1,7 +1,9 @@
 ﻿#nullable disable
+using Karim.ECommerce.Domain.Contracts;
+
 namespace Karim.ECommerce.Domain.Entities._Base
 {
-    public abstract class BaseAuditableEntity<TKey> : BaseEntity<TKey>
+    public abstract class BaseAuditableEntity<TKey> : BaseEntity<TKey>, IBaseAuditableEntity
         where TKey : IEquatable<TKey>
     {
         public string CreatedBy { get; set; }
