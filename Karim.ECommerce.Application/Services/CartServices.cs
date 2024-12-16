@@ -2,14 +2,16 @@
 using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Domain.Contracts;
 using Karim.ECommerce.Domain.Entities.Carts;
+using Karim.ECommerce.Shared.AppSettingsModels;
 using Karim.ECommerce.Shared.Dtos.Carts;
 using Karim.ECommerce.Shared.Exceptions;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Karim.ECommerce.Application.Services
 {
-    internal class CartServices(ICartRepository cartRepository, IProductServices productServices, IMapper mapper, IConfiguration configuration) : ICartServices
+    internal class CartServices(ICartRepository cartRepository, IProductServices productServices, IMapper mapper, IOptions<RedisSettings> redisSettings) : ICartServices
     {
+        private readonly RedisSettings _redisSettings = redisSettings.Value;
         public async Task<CartToReturnDto> GetUserCartAsync(string? cartId)
         {
             if (cartId is null) throw new BadRequestException("The CartId: {cartId} You Have Provid is not Valid");
@@ -40,7 +42,7 @@ namespace Karim.ECommerce.Application.Services
                 RealProducts.Add(cartItem);
             }
             cart.CartItems = RealProducts;
-            var updatedCart = await cartRepository.UpdateCartAsync(cart, TimeSpan.FromDays(double.Parse(configuration.GetSection("RedisSettings")["CartExpiredTimeSpan"]!)));
+            var updatedCart = await cartRepository.UpdateCartAsync(cart, TimeSpan.FromDays(_redisSettings.CartExpiredTimeSpan));
             if (updatedCart is null) throw new BadRequestException("Cannot Update Your Cart, Something Went Wrong");
             return mapper.Map<CartToReturnDto>(cart);
         }

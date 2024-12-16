@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Karim.ECommerce.Application.Abstraction.Contracts;
+﻿using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Application.Mapper;
 using Karim.ECommerce.Application.Services;
-using Karim.ECommerce.Domain.Contracts;
 using Karim.ECommerce.Shared.AppSettingsModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +12,7 @@ namespace Karim.ECommerce.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMapper(typeof(MappingProfile));
-            //services.Configure<RedisSettings>(options => configuration.GetSection("RedisSettings")); //Not Sure
+            services.Configure<RedisSettings>(options => configuration.GetSection("RedisSettings")); //Not Sure
 
             services.AddScoped(typeof(IProductServices), typeof(ProductServices));
 
