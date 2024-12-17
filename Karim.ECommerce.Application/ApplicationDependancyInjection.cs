@@ -12,7 +12,7 @@ namespace Karim.ECommerce.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMapper(typeof(MappingProfile));
-            services.Configure<RedisSettings>(options => configuration.GetSection("RedisSettings")); //Not Sure
+            services.Configure<RedisSettings>(configuration.GetSection("RedisSettings")); //Not Sure
 
             services.AddScoped(typeof(IProductServices), typeof(ProductServices));
 
@@ -20,6 +20,14 @@ namespace Karim.ECommerce.Application
             services.AddScoped(typeof(Func<ICartServices>), (serviceProvider) =>
             {
                 return () => serviceProvider.GetRequiredService<ICartServices>();
+            });
+
+            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+
+            services.AddScoped(typeof(IAuthServices), typeof(AuthServices));
+            services.AddScoped(typeof(Func<IAuthServices>), serviceProvider =>
+            {
+                return () => serviceProvider.GetRequiredService<IAuthServices>();
             });
 
             services.AddScoped(typeof(IServiceManager), typeof(ServiceManager));
