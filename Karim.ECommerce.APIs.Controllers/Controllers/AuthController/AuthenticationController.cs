@@ -1,5 +1,6 @@
 ﻿using Karim.ECommerce.APIs.Controllers.Controllers._BaseController;
 using Karim.ECommerce.Application.Abstraction.Contracts;
+using Karim.ECommerce.Shared.Dtos.Common;
 using Karim.ECommerce.Shared.Dtos.Security;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,19 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.AuthController
         {
             var Result = await serviceManager.AuthServices.RegisterAsync(registerData);
             return Ok(Result);
+        }
+
+        [HttpPost("ForgetPasswordByEmail")]
+        public async Task<ActionResult<SuccessDto>> ForgetPasswordByEmail(ForgetPasswordRequestDto forgetPasswordRequestDto)
+        {
+            var Result = await serviceManager.AuthServices.ForgetPasswordByEmailAsync(forgetPasswordRequestDto);
+            return Ok(Result);
+        }
+
+        [HttpPost("ResetCode")]
+        public async Task<ActionResult> ResetCode(ForgetPasswordRequestDto forgetPasswordRequestDto)
+        {
+            return Ok(new { message = "Success, Reset Code Has Been Sent To Your Email" });
         }
     }
 }

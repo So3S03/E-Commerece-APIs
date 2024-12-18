@@ -1,6 +1,8 @@
 ﻿using Karim.ECommerce.Application.Abstraction.Contracts;
+using Karim.ECommerce.Application.Abstraction.ThirdPartyContracts;
 using Karim.ECommerce.Application.Mapper;
 using Karim.ECommerce.Application.Services;
+using Karim.ECommerce.Application.ThirdPartyServices;
 using Karim.ECommerce.Shared.AppSettingsModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,9 @@ namespace Karim.ECommerce.Application
             {
                 return () => serviceProvider.GetRequiredService<IAuthServices>();
             });
+
+            services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
+            services.AddTransient(typeof(IEmailServices), typeof(EmailServices));
 
             services.AddScoped(typeof(IServiceManager), typeof(ServiceManager));
             return services;

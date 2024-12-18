@@ -1,7 +1,10 @@
 ﻿using Karim.ECommerce.Application.Abstraction.Contracts;
+using Karim.ECommerce.Application.Abstraction.ThirdPartyContracts;
 using Karim.ECommerce.Domain.Entities.Security;
 using Karim.ECommerce.Shared.AppSettingsModels;
+using Karim.ECommerce.Shared.Dtos.Common;
 using Karim.ECommerce.Shared.Dtos.Security;
+using Karim.ECommerce.Shared.Dtos.ThirdPartyDtos;
 using Karim.ECommerce.Shared.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -14,10 +17,12 @@ namespace Karim.ECommerce.Application.Services
 {
     internal class AuthServices(
         UserManager<ApplicationUser> userManager,
+        IEmailServices emailServices,
         SignInManager<ApplicationUser> signInManager,
         IOptions<JwtSettings> jwtSettings) : IAuthServices
     {
         private readonly JwtSettings _jwtSettings = jwtSettings.Value;
+
         public async Task<UserDto> LoginAsync(LoginUserDto loginUserDto)
         {
             var User = await userManager.FindByEmailAsync(loginUserDto.Email);
@@ -55,6 +60,31 @@ namespace Karim.ECommerce.Application.Services
                 Token = await GenerateJwtToken(User)
             }; ;
             return MappedUser;
+        }
+
+        public async Task<SuccessDto> ForgetPasswordByEmailAsync(ForgetPasswordRequestDto forgetPasswordRequestDto)
+        {
+            var User = await userManager.FindByEmailAsync(forgetPasswordRequestDto.Email);
+            if (User is null) throw new BadRequestException("The Account You Try To Reach Doesn't Exist, Please Enter A Valid Email");
+            var ResetCode = new Random().Next(100_000, 999_999);
+            var ResetCodeExpiry = DateTime.UtcNow.AddMinutes(15);
+            User.ResetCode = ResetCode;
+            User.ResetCodeExpiry = ResetCodeExpiry;
+            var Result = await userManager.UpdateAsync(User);
+            if (!Result.Succeeded) throw new BadRequestException("Something Went Wrong While Sending The Reset Code");
+            var Email = new EmailDto()
+            {
+                To = forgetPasswordRequestDto.Email,
+                Subject = "Reset Code For ECommerce Account",
+                Body = $"We Have Recived Your Request For Reset Your Account Password, \nYour Reset Code Is ==> [ {ResetCode} ] <== \nNote: This Code Will Be Expired After 15 Minutes!"
+            };
+            await emailServices.SendEmail(Email);
+            SuccessDto SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "We Have Sent You The Reset Code"
+            };
+            return SuccessObj;
         }
 
         private async Task<string> GenerateJwtToken(ApplicationUser user)

@@ -6,5 +6,7 @@ namespace Karim.ECommerce.Domain.Entities.Security
     {
         public required string DisplayName { get; set; }
         public virtual UserAddress? Address { get; set; }
+        public int? ResetCode { get; set; }
+        public DateTime? ResetCodeExpiry { get; set; }
     }
 }
