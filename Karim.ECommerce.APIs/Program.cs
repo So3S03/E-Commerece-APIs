@@ -5,10 +5,16 @@ using Karim.ECommerce.APIs.Middlewares;
 using Karim.ECommerce.APIs.Services;
 using Karim.ECommerce.Application;
 using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Entities.Security;
 using Karim.ECommerce.Infrastructure;
 using Karim.ECommerce.Infrastructure.Persistence;
+using Karim.ECommerce.Infrastructure.Persistence._SecurityDatabase;
 using Karim.ECommerce.Shared.Contracts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -40,6 +46,7 @@ namespace Karim.ECommerce.APIs
                     opt.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                 })
                 .AddApplicationPart(typeof(ControllersAssembly).Assembly);
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -49,10 +56,47 @@ namespace Karim.ECommerce.APIs
             builder.Services.AddScoped(typeof(ILoggedInUserService), typeof(LoggedInUserService));
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddApplicationServices(builder.Configuration);
+
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>( identityOptions =>
+            {
+                identityOptions.SignIn.RequireConfirmedPhoneNumber = true;
+                identityOptions.SignIn.RequireConfirmedEmail = true;
+
+                identityOptions.User.RequireUniqueEmail = true;
+
+                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(double.Parse(builder.Configuration.GetSection("IdentityOptions")["DefaultLockoutTimeSpanInDays"]!));
+                identityOptions.Lockout.MaxFailedAccessAttempts = int.Parse(builder.Configuration.GetSection("IdentityOptions")["MaxFailedAccessAttempts"]!);
+                identityOptions.Lockout.AllowedForNewUsers = true;
+            } )
+                .AddEntityFrameworkStores<SecurityDbContext>();
+
+            builder.Services.AddAuthentication( authOptions =>
+            {
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(jwtBearerOptions =>
+                {
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        ValidAudience = builder.Configuration.GetSection("JwtSettings")["Audience"],
+                        ValidIssuer = builder.Configuration.GetSection("JwtSettings")["Issure"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JwtSettings")["SymmetricSecurityKey"]!)),
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
             #endregion
 
             var app = builder.Build();
+
             await app.InitializeAsync<IStoreDbInitializer>();
+            await app.InitializeAsync<ISecurityDbInitializer>();
 
             // Configure the HTTP request pipeline.
             #region Configure Kistrell Services
@@ -66,6 +110,7 @@ namespace Karim.ECommerce.APIs
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers(); 
