@@ -270,7 +270,7 @@ namespace Karim.ECommerce.Application.Services
                 issuer: _jwtSettings.Issure,
                 audience: _jwtSettings.Audience,
                 claims: authClaims,
-                expires: DateTime.UtcNow.AddHours(_jwtSettings.ExpiresInHours),
+                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes),
                 signingCredentials: new SigningCredentials(authKey, SecurityAlgorithms.HmacSha256)
                 );
 
