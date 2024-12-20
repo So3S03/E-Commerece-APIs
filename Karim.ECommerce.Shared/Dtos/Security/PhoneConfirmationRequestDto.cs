@@ -2,10 +2,9 @@
 
 namespace Karim.ECommerce.Shared.Dtos.Security
 {
-    public class ForgetPasswordRequestDto
+    public class PhoneConfirmationRequestDto
     {
         [Required]
-        [EmailAddress]
-        public required string Email { get; set; }
+        public required string PhoneNumber { get; set; }
     }
 }

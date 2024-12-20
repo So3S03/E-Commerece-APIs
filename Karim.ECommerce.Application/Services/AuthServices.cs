@@ -7,6 +7,7 @@ using Karim.ECommerce.Shared.Dtos.Security;
 using Karim.ECommerce.Shared.Dtos.ThirdPartyDtos;
 using Karim.ECommerce.Shared.Exceptions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,6 +19,7 @@ namespace Karim.ECommerce.Application.Services
     internal class AuthServices(
         UserManager<ApplicationUser> userManager,
         IEmailServices emailServices,
+        ISmsServices smsServices,
         SignInManager<ApplicationUser> signInManager,
         IOptions<JwtSettings> jwtSettings) : IAuthServices
     {
@@ -42,6 +44,8 @@ namespace Karim.ECommerce.Application.Services
 
         public async Task<UserDto> RegisterAsync(RegisterUserDto registerUserDto)
         {
+            var RegisteredUserByPhone = await userManager.Users.Where(U => U.PhoneNumber == registerUserDto.PhoneNumber).FirstOrDefaultAsync();
+            if (RegisteredUserByPhone is not null) throw new BadRequestException("The Provided Phone Number Is Exist, Try Regester With Different Phone Number");
             var User = new ApplicationUser()
             {
                 DisplayName = registerUserDto.DisplayName,
@@ -62,14 +66,97 @@ namespace Karim.ECommerce.Application.Services
             return MappedUser;
         }
 
-        public async Task<SuccessDto> ForgetPasswordByEmailAsync(ForgetPasswordRequestDto forgetPasswordRequestDto)
+        public async Task<SuccessDto> EmailConfirmationRequestAsync(EmailConfirmationRequestDto emailConfirmationRequestDto)
+        {
+            var User = await userManager.FindByEmailAsync(emailConfirmationRequestDto.Email);
+            if (User is null) throw new BadRequestException("The Provided Email Is Invalid");
+            var ConfirmationCode = new Random().Next(100_000, 999_999);
+            var ConfirmationCodeExpiryDate = DateTime.UtcNow.AddMinutes(15);
+            User.EmailConfirmResetCode = ConfirmationCode;
+            User.EmailConfirmResetCodeExpiry = ConfirmationCodeExpiryDate;
+            var Result = await userManager.UpdateAsync(User);
+            if (!Result.Succeeded) throw new BadRequestException("Something Went Wrong While Sending The Confirmation Code");
+            var Email = new EmailDto()
+            {
+                To = emailConfirmationRequestDto.Email,
+                Subject = "Confirm ECommerce Account",
+                Body = $"We Have Recived Your Request For Confirming Your Account, \nYour Confirmation Code Is ==> [ {ConfirmationCode} ] <== \nNote: This Code Will Be Expired After 15 Minutes!"
+            };
+            await emailServices.SendEmail(Email);
+            var SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "We Have Sent To You The Confirmation Code"
+            };
+            return SuccessObj;
+        }
+
+        public async Task<SuccessDto> ConfirmEmailAsync(ConfirmationEmailCodeDto confirmationEmailCodeDto)
+        {
+            var User = await userManager.FindByEmailAsync(confirmationEmailCodeDto.Email);
+            if (User is null) throw new BadRequestException("The Provided Email Is Invalid");
+            if (User.EmailConfirmResetCode != confirmationEmailCodeDto.ConfirmationCode) throw new BadRequestException("The Provided Code Is Invalid");
+            if (User.EmailConfirmResetCodeExpiry < DateTime.UtcNow) throw new BadRequestException("The Provided Code Is Expired");
+            User.EmailConfirmed = true;
+            var Result = await userManager.UpdateAsync(User);
+            if (!Result.Succeeded) throw new BadRequestException("Something Went Wrong While Confirmming The Account");
+            var SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "Email Has Been Confirmed"
+            };
+            return SuccessObj;
+        }
+
+        public async Task<SuccessDto> PhoneConfirmationRequestAsync(PhoneConfirmationRequestDto phoneConfirmationRequestDto)
+        {
+            var User = await userManager.Users.Where(U => U.PhoneNumber == phoneConfirmationRequestDto.PhoneNumber).FirstOrDefaultAsync();
+            if (User is null) throw new BadRequestException("The Provided Phone Number Is Invalid");
+            var PhoneConfirmationCode = new Random().Next(100_000, 999_999);
+            var PhoneConfirmationCodeExpiry = DateTime.UtcNow.AddMinutes(15);
+            User.PhoneConfirmResetCode = PhoneConfirmationCode;
+            User.PhoneConfirmResetCodeExpiry = PhoneConfirmationCodeExpiry;
+            var Result = await userManager.UpdateAsync(User);
+            if (!Result.Succeeded) throw new BadRequestException("Something Went Wrong While Sending Confirmation Code");
+            var SmsMsg = new SmsMessageDto()
+            {
+                PhoneNumber = phoneConfirmationRequestDto.PhoneNumber,
+                Body = $"We Have Recived Your Request For Confirming Your Phone Number, \nYour Confirmation Code Is ==> [ {PhoneConfirmationCode} ] <== \nNote: This Code Will Be Expired After 15 Minutes!"
+            };
+            await smsServices.SendSms(SmsMsg);
+            var SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "Confirmation Code Has Been Sent To Your Phone Number"
+            };
+            return SuccessObj;
+        }
+
+        public async Task<SuccessDto> ConfirmPhoneAsync(ConfirmationPhoneCodeDto confirmationPhoneCodeDto)
+        {
+            var User = await userManager.Users.Where(U => U.PhoneNumber == confirmationPhoneCodeDto.PhoneNumber).FirstOrDefaultAsync();
+            if (User is null) throw new BadRequestException("The Provided Phone Number Is Invalid");
+            if (confirmationPhoneCodeDto.ConfirmationCode != User.PhoneConfirmResetCode) throw new BadRequestException("The Provided Code Is Invalid");
+            if (User.PhoneConfirmResetCodeExpiry < DateTime.UtcNow) throw new BadRequestException("The Provided Confirmation Code Has Been Expired");
+            User.PhoneNumberConfirmed = true;
+            var Result = await userManager.UpdateAsync(User);
+            if (!Result.Succeeded) throw new BadRequestException("Something Went Wrong While Confirming Phone Number");
+            var SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "Phone Number Has Been Confirmed"
+            };
+            return SuccessObj;
+        }
+
+        public async Task<SuccessDto> ForgetPasswordByEmailAsync(ForgetPasswordRequestByEmailDto forgetPasswordRequestDto)
         {
             var User = await userManager.FindByEmailAsync(forgetPasswordRequestDto.Email);
             if (User is null) throw new BadRequestException("The Account You Try To Reach Doesn't Exist, Please Enter A Valid Email");
             var ResetCode = new Random().Next(100_000, 999_999);
             var ResetCodeExpiry = DateTime.UtcNow.AddMinutes(15);
-            User.ResetCode = ResetCode;
-            User.ResetCodeExpiry = ResetCodeExpiry;
+            User.EmailConfirmResetCode = ResetCode;
+            User.EmailConfirmResetCodeExpiry = ResetCodeExpiry;
             var Result = await userManager.UpdateAsync(User);
             if (!Result.Succeeded) throw new BadRequestException("Something Went Wrong While Sending The Reset Code");
             var Email = new EmailDto()
@@ -85,6 +172,76 @@ namespace Karim.ECommerce.Application.Services
                 Message = "We Have Sent You The Reset Code"
             };
             return SuccessObj;
+        }
+
+        public async Task<SuccessDto> ForgetPasswordByPhoneAsync(ForgetPasswordRequestByPhoneDto forgetPasswordRequestDto)
+        {
+            var User = await userManager.Users.Where(U => U.PhoneNumber == forgetPasswordRequestDto.PhoneNumber).FirstOrDefaultAsync();
+            if (User is null) throw new BadRequestException("The Provided Phone Is Invalid");
+            var RestPhoneCode = new Random().Next(100_000, 999_999);
+            var ResetPhoneCodeExpiry = DateTime.UtcNow.AddMinutes(15);
+            User.PhoneConfirmResetCode = RestPhoneCode;
+            User.PhoneConfirmResetCodeExpiry = ResetPhoneCodeExpiry;
+            var Result = await userManager.UpdateAsync(User);
+            if (!Result.Succeeded) throw new BadRequestException("Something Went Wrong While Sending Reset Code");
+            var SmsMsg = new SmsMessageDto()
+            {
+                PhoneNumber = forgetPasswordRequestDto.PhoneNumber,
+                Body = $"We Have Recived Your Request For Reset Your Account Password, \nYour Reset Code Is ==> [ {RestPhoneCode} ] <== \nNote: This Code Will Be Expired After 15 Minutes!"
+            };
+            await smsServices.SendSms(SmsMsg);
+            var SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "We Have Sent You The Reset Code"
+            };
+            return SuccessObj;
+        }
+
+        public async Task<SuccessDto> VerifyCodeByEmailAsync(ResetCodeConfiramtionByEmailDto codeConfirmationDto)
+        {
+            var User = await userManager.FindByEmailAsync(codeConfirmationDto.Email);
+            if (User is null) throw new BadRequestException("The Provided Email Is Incorrect");
+            if (codeConfirmationDto.ResetCode != User.EmailConfirmResetCode) throw new BadRequestException("The Code You Have Provided Is Not Valid");
+            if (User.EmailConfirmResetCodeExpiry < DateTime.UtcNow) throw new BadRequestException("The Code You Have Provided Is Expired");
+            var SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "Reset Code Is Verified, Please Proceed To Change Your Password"
+            };
+            return SuccessObj;
+        }
+
+        public async Task<SuccessDto> VerifyCodeByPhoneAsync(ResetCodeConfirmationByPhoneDto codeConfirmationDto)
+        {
+            var User = await userManager.Users.Where(U => U.PhoneNumber == codeConfirmationDto.PhoneNumber).FirstOrDefaultAsync();
+            if (User is null) throw new BadRequestException("The Provided Phone Number is Invalid");
+            if (codeConfirmationDto.ResetCode != User.PhoneConfirmResetCode) throw new BadRequestException("The Provided Code Is Invalid");
+            if (User.PhoneConfirmResetCodeExpiry < DateTime.UtcNow) throw new BadRequestException("The Provided Code Has Been Expired");
+            var SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "Reset Code Is Verified, Please Proceed To Change Your Password"
+            };
+            return SuccessObj;
+        }
+
+        public async Task<UserDto> ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
+        {
+            var User = await userManager.FindByEmailAsync(resetPasswordDto.Email);
+            if (User is null) throw new BadRequestException("The Email Is Invalid");
+            var RemovedPassword = await userManager.RemovePasswordAsync(User);
+            if (!RemovedPassword.Succeeded) throw new BadRequestException("Something Went Wrong While Reseting Your Password");
+            var EnterNewPassword = await userManager.AddPasswordAsync(User, resetPasswordDto.NewPassword);
+            if (!EnterNewPassword.Succeeded) throw new BadRequestException("Something Went Wrong While Reseting Your Password");
+            var MappedUser = new UserDto()
+            {
+                UserId = User.Id,
+                DisplayName = User.DisplayName,
+                Email = User.Email!,
+                Token = await GenerateJwtToken(User)
+            };
+            return MappedUser;
         }
 
         private async Task<string> GenerateJwtToken(ApplicationUser user)

@@ -35,6 +35,9 @@ namespace Karim.ECommerce.Application
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
             services.AddTransient(typeof(IEmailServices), typeof(EmailServices));
 
+            services.Configure<SmsSettings>(configuration.GetSection("SmsSettings"));
+            services.AddTransient(typeof(ISmsServices), typeof(SmsServices));
+
             services.AddScoped(typeof(IServiceManager), typeof(ServiceManager));
             return services;
         }

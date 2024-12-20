@@ -60,7 +60,6 @@ namespace Karim.ECommerce.APIs
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>( identityOptions =>
             {
-                identityOptions.SignIn.RequireConfirmedAccount = true;
                 identityOptions.SignIn.RequireConfirmedPhoneNumber = true;
                 identityOptions.SignIn.RequireConfirmedEmail = true;
 

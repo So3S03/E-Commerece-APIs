@@ -22,17 +22,67 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.AuthController
             return Ok(Result);
         }
 
+        [HttpPost("ConfirmEmailCode")]
+        public async Task<ActionResult<SuccessDto>> EmailConfirmationRequest(EmailConfirmationRequestDto emailConfirmationRequestDto)
+        {
+            var Result = await serviceManager.AuthServices.EmailConfirmationRequestAsync(emailConfirmationRequestDto);
+            return Ok(Result);
+        }
+
+        [HttpPut("ConfirmingEmail")]
+        public async Task<ActionResult<SuccessDto>> ConfirmingEmail(ConfirmationEmailCodeDto confirmationEmailCodeDto)
+        {
+            var Result = await serviceManager.AuthServices.ConfirmEmailAsync(confirmationEmailCodeDto);
+            return Ok(Result);
+        }
+
+        [HttpPost("ConfirmPhoneCode")]
+        public async Task<ActionResult<SuccessDto>> PhoneConfirmationRequest(PhoneConfirmationRequestDto phoneConfirmationRequestDto)
+        {
+            var Result = await serviceManager.AuthServices.PhoneConfirmationRequestAsync(phoneConfirmationRequestDto);
+            return Ok(Result);
+        }
+
+        [HttpPut("ConfirmingPhone")]
+        public async Task<ActionResult<SuccessDto>> ConfirmingPhone(ConfirmationPhoneCodeDto confirmationPhoneCodeDto)
+        {
+            var Result = await serviceManager.AuthServices.ConfirmPhoneAsync(confirmationPhoneCodeDto);
+            return Ok(Result);
+        }
+
         [HttpPost("ForgetPasswordByEmail")]
-        public async Task<ActionResult<SuccessDto>> ForgetPasswordByEmail(ForgetPasswordRequestDto forgetPasswordRequestDto)
+        public async Task<ActionResult<SuccessDto>> ForgetPasswordByEmail(ForgetPasswordRequestByEmailDto forgetPasswordRequestDto)
         {
             var Result = await serviceManager.AuthServices.ForgetPasswordByEmailAsync(forgetPasswordRequestDto);
             return Ok(Result);
         }
 
-        [HttpPost("ResetCode")]
-        public async Task<ActionResult> ResetCode(ForgetPasswordRequestDto forgetPasswordRequestDto)
+        [HttpPost("ForgetPasswordByPhone")]
+        public async Task<ActionResult<SuccessDto>> ForgetPasswordByPhone(ForgetPasswordRequestByPhoneDto forgetPasswordRequestByPhoneDto)
         {
-            return Ok(new { message = "Success, Reset Code Has Been Sent To Your Email" });
+            var Result = await serviceManager.AuthServices.ForgetPasswordByPhoneAsync(forgetPasswordRequestByPhoneDto);
+            return Ok(Result);
+        }
+
+        [HttpPost("ResetCodeByEmail")]
+        public async Task<ActionResult<SuccessDto>> ResetCodeByEmail(ResetCodeConfiramtionByEmailDto resetCodeConfiramtionDto)
+        {
+            var Result = await serviceManager.AuthServices.VerifyCodeByEmailAsync(resetCodeConfiramtionDto);
+            return Ok(Result);
+        }
+
+        [HttpPost("ResetCodeByPhone")]
+        public async Task<ActionResult<SuccessDto>> ResetCodeByPhone(ResetCodeConfirmationByPhoneDto resetCodeConfiramtionDto)
+        {
+            var Result = await serviceManager.AuthServices.VerifyCodeByPhoneAsync(resetCodeConfiramtionDto);
+            return Ok(Result);
+        }
+
+        [HttpPut("ResetPassword")]
+        public async Task<ActionResult<UserDto>> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var Result = await serviceManager.AuthServices.ResetPasswordAsync(resetPasswordDto);
+            return Ok(Result);
         }
     }
 }
