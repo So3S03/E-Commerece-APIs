@@ -1,4 +1,5 @@
 ﻿using Karim.ECommerce.Domain.Entities.Products;
+using Karim.ECommerce.Domain.Entities.WishList;
 using Karim.ECommerce.Infrastructure.Persistence._Common;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
