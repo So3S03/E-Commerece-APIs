@@ -68,7 +68,7 @@ namespace Karim.ECommerce.Application.Services
         {
             if (string.IsNullOrEmpty(wishListId)) throw new BadRequestException($"The Wish List Id : {wishListId} You Have Provided Is Invalid");
             var WishList = await wishListRepository.GetWishListAsync(wishListId);
-            if (WishList is null) throw new BadRequestException("Eather The Wish List You Tried To Delete Is Already Deleted Or There Was No Wish List With The Provided Id Before");
+            if (WishList is null) throw new NotFoundException(nameof(WishListEntity), wishListId);
             var Deleted = await wishListRepository.DeleteWishListAsync(wishListId);
             if (!Deleted) throw new BadRequestException("Something Went Wrong While Deleting The Wish List");
             var SuccessObj = new SuccessDto()

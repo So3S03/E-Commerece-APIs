@@ -18,8 +18,7 @@ namespace Karim.ECommerce.Infrastructure.WishList_Repository
         public async Task<WishList?> GetWishListAsync(string WishListId)
         {
             var Result = await _redis.StringGetAsync(WishListId);
-            var SerializedWishList = JsonSerializer.Deserialize<WishList>(Result!);
-            return SerializedWishList is not null ? SerializedWishList : null;
+            return Result.IsNullOrEmpty ? null : JsonSerializer.Deserialize<WishList>(Result!);
         }
 
         public async Task<bool> DeleteWishListAsync(string WishListId) => await _redis.KeyDeleteAsync(WishListId);
