@@ -14,7 +14,8 @@ namespace Karim.ECommerce.Application.Services
     {
         public async Task<WishListToReturnDto> CreateUpdateWishListAsync(WishListToCreateDto wishListToCreateDto)
         {
-            if(wishListToCreateDto.WishedProductsId is null) throw new BadRequestException("The Wish List That You Try To Create Or Update Is Empty");
+            if (wishListToCreateDto is null) throw new BadRequestException("The Wish List You Provided Is Invalid");
+            if(wishListToCreateDto.WishedProductsId is null) throw new BadRequestException("The Wish List Ids That You Try To Create Or Update Is Empty");
             //1. To Store
             var WishedProductsListToCreate = new List<WishedProduct>();
 
@@ -28,7 +29,7 @@ namespace Karim.ECommerce.Application.Services
                 {
                     ProductId = IdVariable.ProductId
                 };
-                if(WishedProductsListToCreate.Any(P => P.ProductId != WishedProduct.ProductId)) WishedProductsListToCreate.Add(WishedProduct);
+                if(!WishedProductsListToCreate.Any(P => P.ProductId == WishedProduct.ProductId)) WishedProductsListToCreate.Add(WishedProduct);
 
                 //2. To Show
                 var Product = await productServices.GetProductByIdAsync(IdVariable.ProductId);
@@ -37,13 +38,12 @@ namespace Karim.ECommerce.Application.Services
                 {
                     ProductId = Product.Id,
                     ProductName = Product.ProductName,
-                    BriefDescription = Product.Description!.Length > 10 ? $"{Product.Description.Split(' ').Take(10)} ..." : Product.Description,
                     PictureUrl = Product.MainImage,
-                    InStock = Product.QuantityInStock > 1 ? true : false,
+                    InStock = Product.QuantityInStock > 0 ? true : false,
                     Price = Product.Price,
                     Rating = Product.Rating,
                 };
-                if (WishedProductsListToReturn.Any(P => P.ProductId != MappedProduct.ProductId)) WishedProductsListToReturn.Add(MappedProduct);
+                if (!WishedProductsListToReturn.Any(P => P.ProductId == MappedProduct.ProductId)) WishedProductsListToReturn.Add(MappedProduct);
             }
             //1. To Store
             var WishListToStore = new WishListEntity()
@@ -52,6 +52,7 @@ namespace Karim.ECommerce.Application.Services
                 WishedProductsId = WishedProductsListToCreate
             };
             var Result = await wishListRepository.CreateUpdateWishListAsync(WishListToStore);
+            if (Result is null) throw new BadRequestException("Something Went Wrong While Creating Your Wish List");
 
             //2. To Show
             var WishListToShow = new WishListToReturnDto()
@@ -78,7 +79,7 @@ namespace Karim.ECommerce.Application.Services
             return SuccessObj;
         }
 
-        public async Task<WishListToReturnDto?> GetUserWishListAsync(string wishListId)
+        public async Task<WishListToReturnDto> GetUserWishListAsync(string wishListId)
         {
             if (string.IsNullOrEmpty(wishListId)) throw new BadRequestException($"The Provided Wish List Id: {wishListId} Is Invalid");
             var RetrivedWishList = await wishListRepository.GetWishListAsync(wishListId);
@@ -91,9 +92,8 @@ namespace Karim.ECommerce.Application.Services
                 {
                     ProductId = Product.Id,
                     ProductName = Product.ProductName,
-                    BriefDescription = Product.Description!.Length > 10 ? $"{Product.Description.Split(' ').Take(10)} ..." : Product.Description,
                     PictureUrl = Product.MainImage,
-                    InStock = Product.QuantityInStock > 1 ? true : false,
+                    InStock = Product.QuantityInStock > 0 ? true : false,
                     Price = Product.Price,
                     Rating = Product.Rating,
                 };

@@ -5,7 +5,7 @@ namespace Karim.ECommerce.Application.Abstraction.Contracts
 {
     public interface IWishListServices
     {
-        Task<WishListToReturnDto?> GetUserWishListAsync(string wishListId);
+        Task<WishListToReturnDto> GetUserWishListAsync(string wishListId);
         Task<WishListToReturnDto> CreateUpdateWishListAsync(WishListToCreateDto wishListToCreateDto);
         Task<SuccessDto> DeleteWishListAsync(string wishListId);
     }
