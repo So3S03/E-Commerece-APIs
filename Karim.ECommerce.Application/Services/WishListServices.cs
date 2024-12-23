@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Karim.ECommerce.Application.Abstraction.Contracts;
+﻿using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Domain.Contracts;
 using Karim.ECommerce.Domain.Entities.WishList;
 using Karim.ECommerce.Shared.Dtos.Common;
@@ -10,7 +9,7 @@ using WishListEntity = Karim.ECommerce.Domain.Entities.WishList.WishList;
 
 namespace Karim.ECommerce.Application.Services
 {
-    public class WishListServices(IWishListRepository wishListRepository, IProductServices productServices) : IWishListServices
+    public class WishListServices(IWishListRepository wishListRepository, IUnitOfWork unitOfWork) : IWishListServices
     {
         public async Task<WishListToReturnDto> CreateUpdateWishListAsync(WishListToCreateDto wishListToCreateDto)
         {
@@ -22,6 +21,8 @@ namespace Karim.ECommerce.Application.Services
             //2. To Show
             var WishedProductsListToReturn = new List<WishedProductsDto>();
 
+            var ProductsList = await unitOfWork.GetRepository<ProductEntity, int>().GetAllAsyncWithNoSpecs();
+
             foreach(var IdVariable in wishListToCreateDto.WishedProductsId)
             {
                 //1. To Store
@@ -32,7 +33,7 @@ namespace Karim.ECommerce.Application.Services
                 if(!WishedProductsListToCreate.Any(P => P.ProductId == WishedProduct.ProductId)) WishedProductsListToCreate.Add(WishedProduct);
 
                 //2. To Show
-                var Product = await productServices.GetProductByIdAsync(IdVariable.ProductId);
+                var Product = ProductsList.Where(P => P.Id == IdVariable.ProductId).FirstOrDefault();
                 if (Product is null) throw new NotFoundException(nameof(ProductEntity), IdVariable.ProductId);
                 var MappedProduct = new WishedProductsDto()
                 {
@@ -85,12 +86,13 @@ namespace Karim.ECommerce.Application.Services
             var RetrivedWishList = await wishListRepository.GetWishListAsync(wishListId);
             if (RetrivedWishList is null) throw new NotFoundException(nameof(WishListEntity), wishListId);
             var WishedProducts = new List<WishedProductsDto>();
+            var ProductsList = await unitOfWork.GetRepository<ProductEntity, int>().GetAllAsyncWithNoSpecs();
             foreach(var IdsVariable in RetrivedWishList.WishedProductsId!)
             {
-                var Product = await productServices.GetProductByIdAsync(IdsVariable.ProductId);
+                var Product = ProductsList.Where(P => P.Id == IdsVariable.ProductId).FirstOrDefault();
                 var MappedProduct = new WishedProductsDto()
                 {
-                    ProductId = Product.Id,
+                    ProductId = Product!.Id,
                     ProductName = Product.ProductName,
                     PictureUrl = Product.MainImage,
                     InStock = Product.QuantityInStock > 0 ? true : false,
