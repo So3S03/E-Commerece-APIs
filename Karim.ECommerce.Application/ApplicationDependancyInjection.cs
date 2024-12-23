@@ -38,6 +38,12 @@ namespace Karim.ECommerce.Application
             services.Configure<SmsSettings>(configuration.GetSection("SmsSettings"));
             services.AddTransient(typeof(ISmsServices), typeof(SmsServices));
 
+            services.AddScoped(typeof(IWishListServices), typeof(WishListServices));
+            services.AddScoped(typeof(Func<IWishListServices>), serviceProvider =>
+            {
+                return () => serviceProvider.GetRequiredService<IWishListServices>();
+            });
+
             services.AddScoped(typeof(IServiceManager), typeof(ServiceManager));
             return services;
         }

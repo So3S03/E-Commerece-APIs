@@ -5,5 +5,6 @@
         public IProductServices ProductServices { get; }
         public ICartServices CartServices { get; }
         public IAuthServices AuthServices { get; }
+        public IWishListServices WishListServices { get; }
     }
 }
