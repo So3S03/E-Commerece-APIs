@@ -42,10 +42,11 @@ namespace Karim.ECommerce.Application.Mapper
             CreateMap<Cart, CartToReturnDto>().ReverseMap();
 
             //Order
+            CreateMap<Order, OrderToReturnDto>();
             CreateMap<OrderItem, OrderItemDto>();
             CreateMap<OrderAddress, OrderAddressDto>().ReverseMap();
-
-
+            CreateMap<DeliveryMethod, DeliveryMethodDto>();
+            
         }
     }
 }
