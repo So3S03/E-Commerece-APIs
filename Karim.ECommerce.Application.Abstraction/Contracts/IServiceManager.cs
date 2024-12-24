@@ -6,5 +6,6 @@
         public ICartServices CartServices { get; }
         public IAuthServices AuthServices { get; }
         public IWishListServices WishListServices { get; }
+        public IOrderServices OrderServices { get; }
     }
 }
