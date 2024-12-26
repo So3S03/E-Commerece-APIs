@@ -1,20 +1,74 @@
 ﻿using AutoMapper;
 using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Entities.Carts;
 using Karim.ECommerce.Domain.Entities.Orders;
-using Karim.ECommerce.Domain.Entities.Security;
 using Karim.ECommerce.Domain.Specifications.Order;
 using Karim.ECommerce.Shared.Dtos.Orders;
 using Karim.ECommerce.Shared.Exceptions;
-using Microsoft.AspNetCore.Identity;
-
+using DeliveryMethodEntity = Karim.ECommerce.Domain.Entities.Orders.DeliveryMethod;
 namespace Karim.ECommerce.Application.Services
 {
     internal class OrderServices(ICartServices cartServices, IUnitOfWork unitOfWork, IMapper mapper) : IOrderServices
     {
-        public Task<OrderToReturnDto> CreateOrderAsync(OrderToCreateDto userOrder, string buyerEmail)
+        public async Task<OrderToReturnDto> CreateOrderAsync(OrderToCreateDto userOrder, string buyerEmail)
         {
-            throw new NotImplementedException();
+            if (userOrder is null) throw new BadRequestException("The Order You Try To Make Is Invalid");
+            //1. Get User Cart
+            var cart = await cartServices.GetUserCartAsync(userOrder.CartId);
+            if (cart is null) throw new NotFoundException(nameof(Cart), userOrder.CartId);
+            if (!cart.CartItems.Any()) throw new BadRequestException("Your Cart Is Empty, You Can't Create Order With Empty Cart");
+
+            //2. Check On DeliveryMethod and Get It
+            if (userOrder.DeliveryMethod <= 0) throw new BadRequestException("You Should Set Valid Value For Delivery Method");
+            var DeliveryMethod = await unitOfWork.GetRepository<DeliveryMethodEntity, int>().GetAsyncWithNoSpecs(userOrder.DeliveryMethod);
+            if (DeliveryMethod is null) throw new NotFoundException(nameof(DeliveryMethodEntity), userOrder.DeliveryMethod);
+
+
+            //3. Create OrderItemList
+            var ItemsList = new List<OrderItem>();
+            foreach (var item in cart.CartItems)
+            {
+                var Item = new OrderItem()
+                {
+                    ProductId = item.ProductId,
+                    ProductName = item.ProductName,
+                    Price = item.Price,
+                    PictureUrl = item.PictureUrl!,
+                    Quantity = item.Quantity
+                };
+                if (!ItemsList.Any(I => I.ProductId == Item.ProductId)) ItemsList.Add(Item);
+            }
+
+
+            //4. Calc SubTotal
+            var SubTotal = ItemsList.Sum(P => P.Price *  P.Quantity);
+
+            //5. Mapping The Address
+            var Adderss = mapper.Map<OrderAddress>(userOrder.ShippingAddress);
+
+            //6. Craete The Order
+            var OrderToBeCreate = new Order()
+            {
+                BuyerEmail = buyerEmail,
+                Items = ItemsList,
+                SubTotal = SubTotal,
+                DeliveryMethod = DeliveryMethod,
+                DeliveryMethodId = DeliveryMethod.Id,
+                ShippingAddress = Adderss
+            };
+
+            var OrderRepo = unitOfWork.GetRepository<Order, int>();
+            await OrderRepo.AddAsync(OrderToBeCreate);
+
+            //7. Save To Database
+            var Created = await unitOfWork.CompleteAsync() > 0;
+            if (!Created) throw new BadRequestException("Something Went Wrong While Creating The Order");
+
+            //8. Mapping The Order To Return It
+            var MappedOrder = mapper.Map<OrderToReturnDto>(OrderToBeCreate);
+            return MappedOrder;
+
         }
 
         public async Task<IEnumerable<OrderToReturnDto>> GetAllOrdersForUserAsync(string buyerEmail)

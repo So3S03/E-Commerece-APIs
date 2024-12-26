@@ -8,6 +8,6 @@ namespace Karim.ECommerce.Domain.Contracts
             where TEntity : BaseEntity<TKey>
             where TKey : IEquatable<TKey>;
 
-        ValueTask SaveChangesAsync();
+        Task<int> CompleteAsync();
     }
 }
