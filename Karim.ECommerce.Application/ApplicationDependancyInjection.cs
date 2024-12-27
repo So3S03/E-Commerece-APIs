@@ -44,6 +44,12 @@ namespace Karim.ECommerce.Application
                 return () => serviceProvider.GetRequiredService<IWishListServices>();
             });
 
+            services.AddScoped(typeof(IOrderServices), typeof(OrderServices));
+            services.AddScoped(typeof(Func<IOrderServices>), servicesProvider =>
+            {
+                return () => servicesProvider.GetRequiredService<IOrderServices>();
+            });
+
             services.AddScoped(typeof(IServiceManager), typeof(ServiceManager));
             return services;
         }

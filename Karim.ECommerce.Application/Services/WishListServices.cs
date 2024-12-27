@@ -1,6 +1,7 @@
 ﻿using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Domain.Contracts;
 using Karim.ECommerce.Domain.Entities.WishList;
+using Karim.ECommerce.Shared.Dtos.Carts;
 using Karim.ECommerce.Shared.Dtos.Common;
 using Karim.ECommerce.Shared.Dtos.WishList;
 using Karim.ECommerce.Shared.Exceptions;
@@ -9,7 +10,7 @@ using WishListEntity = Karim.ECommerce.Domain.Entities.WishList.WishList;
 
 namespace Karim.ECommerce.Application.Services
 {
-    public class WishListServices(IWishListRepository wishListRepository, IUnitOfWork unitOfWork) : IWishListServices
+    public class WishListServices(IWishListRepository wishListRepository, IUnitOfWork unitOfWork, ICartServices cartServices) : IWishListServices
     {
         public async Task<WishListToReturnDto> CreateUpdateWishListAsync(WishListToCreateDto wishListToCreateDto)
         {
@@ -107,6 +108,43 @@ namespace Karim.ECommerce.Application.Services
                 WishedProducts = WishedProducts
             };
             return WishList;
+        }
+
+        public async Task<SuccessDto> AddAllWishedProductToCartAsync(string wishListId, string cartId)
+        {
+            if (string.IsNullOrEmpty(wishListId)) throw new BadRequestException("Please Provide A Valid wish List Id");
+            var UserWishList = await GetUserWishListAsync(wishListId);
+            if (UserWishList is null) throw new NotFoundException(nameof(WishListEntity), wishListId);
+            if (UserWishList.WishedProducts is null) throw new BadRequestException("Your Wished Products List Is Empty You Can't Add Empty List To Your Cart");
+            var Items = new List<CartItemDto>();
+            foreach(var item in UserWishList.WishedProducts)
+            {
+                var WishedProduct = new CartItemDto()
+                {
+                    ProductId = item.ProductId,
+                    ProductName = item.ProductName,
+                    Price = item.Price,
+                    Quantity = 1,
+                    PictureUrl = item.PictureUrl,
+                    Brand = "",
+                    Category = ""
+                };
+                Items.Add(WishedProduct);
+            }
+            var cartToCreate = new CartToReturnDto()
+            {
+                CartId = cartId,
+                CartItems = Items
+            };
+            var Sent = await cartServices.UpdateUserCartAsync(cartToCreate) is null;
+            if (Sent) throw new BadRequestException("Something Went Wrong While Adding The Wish List To The Cart");
+            await DeleteWishListAsync(wishListId);
+            var SuccessObj = new SuccessDto()
+            {
+                Status = "Success",
+                Message = "Wish List Added Successfully To The Cart"
+            };
+            return SuccessObj;
         }
     }
 }

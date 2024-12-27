@@ -31,5 +31,11 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.WishListController
             return Ok(Result);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<SuccessDto>> AddWishedProductsToCart(string WishListId, string CartId)
+        {
+            var Result = await serviceManager.WishListServices.AddAllWishedProductToCartAsync(WishListId, CartId);
+            return Ok(Result);
+        }
     }
 }

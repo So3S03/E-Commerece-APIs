@@ -1,4 +1,5 @@
 ﻿using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Entities.Orders;
 using Karim.ECommerce.Domain.Entities.Products;
 using Karim.ECommerce.Infrastructure.Persistence._Common;
 using System.Text.Json;
@@ -48,6 +49,17 @@ namespace Karim.ECommerce.Infrastructure.Persistence._StoreDatabase
                 if (Data is not null)
                 {
                     var SerializedData = JsonSerializer.Deserialize<List<Product>>(Data);
+                    await dbContext.AddRangeAsync(SerializedData!);
+                    await dbContext.SaveChangesAsync();
+                }
+            }
+
+            if(!dbContext.DeliveryMethods.Any())
+            {
+                var Data = await File.ReadAllTextAsync("../Karim.ECommerce.Infrastructure.Persistence/_StoreDatabase/Seeds/DeliveryMethod.Json");
+                if (Data is not null)
+                {
+                    var SerializedData = JsonSerializer.Deserialize<List<DeliveryMethod>>(Data);
                     await dbContext.AddRangeAsync(SerializedData!);
                     await dbContext.SaveChangesAsync();
                 }

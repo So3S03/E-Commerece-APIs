@@ -15,7 +15,7 @@ namespace Karim.ECommerce.Infrastructure.Persistence.UnitOfWork
             where TKey : IEquatable<TKey>
             => (IGenaricRepository<TEntity,TKey>) Repos.GetOrAdd(typeof(TEntity).Name, new GenaricRepository<TEntity, TKey>(dbContext));
 
-        public async ValueTask SaveChangesAsync()
+        public async Task<int> CompleteAsync()
             => await dbContext.SaveChangesAsync();
 
         public async ValueTask DisposeAsync()

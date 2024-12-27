@@ -8,5 +8,6 @@ namespace Karim.ECommerce.Application.Abstraction.Contracts
         Task<WishListToReturnDto> GetUserWishListAsync(string wishListId);
         Task<WishListToReturnDto> CreateUpdateWishListAsync(WishListToCreateDto wishListToCreateDto);
         Task<SuccessDto> DeleteWishListAsync(string wishListId);
+        Task<SuccessDto> AddAllWishedProductToCartAsync(string wishListId, string cartId);
     }
 }
