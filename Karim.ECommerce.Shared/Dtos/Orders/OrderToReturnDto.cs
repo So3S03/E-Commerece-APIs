@@ -2,6 +2,7 @@
 {
     public class OrderToReturnDto
     {
+        public int OrderId { get; set; }
         public required string BuyerEmail { get; set; }
         public DateTime OrderDate { get; set; }
         public required string Status { get; set; }

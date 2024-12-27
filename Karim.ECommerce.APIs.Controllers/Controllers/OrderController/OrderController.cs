@@ -18,7 +18,7 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.OrderController
             return Ok(Result);
         }
 
-        [HttpGet("GetOrder/{id}")]
+        [HttpGet("GetOrder/{orderId}")]
         public async Task<ActionResult<OrderToReturnDto>> GetUserOrder(int? orderId)
         {
             var buyerEmail = User.FindFirst(ClaimTypes.Email)!.Value;
