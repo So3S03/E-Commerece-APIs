@@ -138,6 +138,7 @@ namespace Karim.ECommerce.Application.Services
             };
             var Sent = await cartServices.UpdateUserCartAsync(cartToCreate) is null;
             if (Sent) throw new BadRequestException("Something Went Wrong While Adding The Wish List To The Cart");
+            await DeleteWishListAsync(wishListId);
             var SuccessObj = new SuccessDto()
             {
                 Status = "Success",
