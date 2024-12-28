@@ -19,3 +19,12 @@ Caching and Basket Management: Utilizes Redis In-Memory Database for high-perfor
 Token Generation: Implements JWT (JSON Web Tokens) for secure token-based authentication.
 Payment Integration: Integrated with Stripe to handle payment processing securely and efficiently.
 This repository serves as a solid foundation for building robust and scalable e-commerce applications. Contributions and feedback are welcome! 😊
+
+**************************************************************************************************************
+NOTE : If You Want To Test The APIs For Twilio Services You Must Provide Values For The Following Object
+  "SmsSettings": {
+    "AccountSID": "Please Provid Your Own AccountSID",
+    "AuthToken": "Please Provid Your Own AuthToken",
+    "TwilioPhoneNumber": "Please Provid Your Own TwilioPhoneNumber"
+  }
+You Will Find This Object In -(appsettings.json)- That File Exist In -> {Karim.ECommerce.APIs} <- Project
