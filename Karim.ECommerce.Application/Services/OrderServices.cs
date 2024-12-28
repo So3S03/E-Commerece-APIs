@@ -9,7 +9,7 @@ using Karim.ECommerce.Shared.Exceptions;
 using DeliveryMethodEntity = Karim.ECommerce.Domain.Entities.Orders.DeliveryMethod;
 namespace Karim.ECommerce.Application.Services
 {
-    internal class OrderServices(ICartServices cartServices, IUnitOfWork unitOfWork, IMapper mapper) : IOrderServices
+    internal class OrderServices(ICartServices cartServices, IUnitOfWork unitOfWork, IMapper mapper, IPaymentService paymentService) : IOrderServices
     {
         public async Task<OrderToReturnDto> CreateOrderAsync(OrderToCreateDto userOrder, string buyerEmail)
         {
@@ -47,7 +47,17 @@ namespace Karim.ECommerce.Application.Services
             //5. Mapping The Address
             var Adderss = mapper.Map<OrderAddress>(userOrder.ShippingAddress);
 
-            //6. Craete The Order
+            //6. Check If The Order Exist Or Not
+            var OrderRepo = unitOfWork.GetRepository<Order, int>();
+            var OrderSpec = new OrderSpecifications(cart.PaymentIntentId!, true);
+            var ExistingOrder = await OrderRepo.GetAsyncWithSpecs(OrderSpec);
+            if (ExistingOrder is not null)
+            {
+                OrderRepo.Delete(ExistingOrder);
+                await paymentService.CreateUpdatePaymentIntent(cart.CartId);
+            }
+
+            //7. Craete The Order
             var OrderToBeCreate = new Order()
             {
                 BuyerEmail = buyerEmail,
@@ -55,17 +65,17 @@ namespace Karim.ECommerce.Application.Services
                 SubTotal = SubTotal,
                 DeliveryMethod = DeliveryMethod,
                 DeliveryMethodId = DeliveryMethod.Id,
-                ShippingAddress = Adderss
+                ShippingAddress = Adderss,
+                PaymentIntentId = cart.PaymentIntentId!
             };
 
-            var OrderRepo = unitOfWork.GetRepository<Order, int>();
             await OrderRepo.AddAsync(OrderToBeCreate);
 
-            //7. Save To Database
+            //8. Save To Database
             var Created = await unitOfWork.CompleteAsync() > 0;
             if (!Created) throw new BadRequestException("Something Went Wrong While Creating The Order");
 
-            //8. Mapping The Order To Return It
+            //9. Mapping The Order To Return It
             var MappedOrder = mapper.Map<OrderToReturnDto>(OrderToBeCreate);
             return MappedOrder;
 
@@ -99,6 +109,16 @@ namespace Karim.ECommerce.Application.Services
             if (DileveryMethodsList is null) throw new BadRequestException("Something Went Wrong While Retriving Delivery Methods Data");
             var MappedList = mapper.Map<IEnumerable<DeliveryMethodDto>>(DileveryMethodsList);
             return MappedList;
+        }
+
+        public async Task<DeliveryMethodDto> GetDeliveryMethodByIdAsync(int deliveryMethodId)
+        {
+            if (deliveryMethodId <= 0) throw new BadRequestException("The Provided Delivery Method Id Is Invalid");
+            var deliveryMethodRepo = unitOfWork.GetRepository<DeliveryMethodEntity, int>();
+            var deliveryMethod = await deliveryMethodRepo.GetAsyncWithNoSpecs(deliveryMethodId);
+            if(deliveryMethod is null) throw new NotFoundException(nameof(DeliveryMethodEntity), deliveryMethodId);
+            var mappedMethod = mapper.Map<DeliveryMethodDto>(deliveryMethod);
+            return mappedMethod;
         }
     }
 }
