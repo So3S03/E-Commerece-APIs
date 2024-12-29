@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Karim.ECommerce.Application.Abstraction\Karim.ECommerce.Application.Abstraction.csproj" />
     <ProjectReference Include="..\Karim.ECommerce.Domain\Karim.ECommerce.Domain.csproj" />
+    <ProjectReference Include="..\Karim.ECommerce.Infrastructure\Karim.ECommerce.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,23 +1,31 @@
 ﻿using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Domain.Contracts;
 using Karim.ECommerce.Domain.Entities.Carts;
+using Karim.ECommerce.Domain.Entities.Orders;
+using Karim.ECommerce.Shared.AppSettingsModels;
 using Karim.ECommerce.Shared.Dtos.Carts;
 using Karim.ECommerce.Shared.Exceptions;
+using Microsoft.Extensions.Options;
 using Stripe;
+using DeliveryMethodEntity = Karim.ECommerce.Domain.Entities.Orders.DeliveryMethod;
 
 namespace Karim.ECommerce.Infrastructure.Payment_Services
 {
-    public class PaymentServices(ICartServices cartServices, IOrderServices orderServices) : IPaymentService
+    public class PaymentServices(ICartServices cartServices, IUnitOfWork unitOfWork, IOptions<StripeSettings> stripeSettings) : IPaymentService
     {
+        private readonly StripeSettings _stripeSettings = stripeSettings.Value;
         public async Task<CartToReturnDto?> CreateUpdatePaymentIntent(string cartId)
         {
+            StripeConfiguration.ApiKey = _stripeSettings.SecretKey;
             if (string.IsNullOrEmpty(cartId)) throw new BadRequestException("The Provided Cart Id Is Invalid");
             var UserCart = await cartServices.GetUserCartAsync(cartId);
             if (UserCart is null) throw new NotFoundException(nameof(Cart), cartId);
             if (UserCart.CartItems.Count <= 0) throw new BadRequestException("We Can't Update Or Create Payment Intent For Empty Cart");
             if(UserCart.DeliveryMethodId.HasValue)
             {
-                var DeliveryMethod = await orderServices.GetDeliveryMethodByIdAsync(UserCart.DeliveryMethodId.Value);
+                var OrderRepo = unitOfWork.GetRepository<DeliveryMethodEntity, int>();
+                var DeliveryMethod = await OrderRepo.GetAsyncWithNoSpecs(UserCart.DeliveryMethodId.Value);
+                if (DeliveryMethod is null) throw new NotFoundException(nameof(DeliveryMethodEntity), UserCart.DeliveryMethodId.Value);
                 UserCart.ShippingPrice = DeliveryMethod.Cost;
             }
             PaymentIntent? paymentIntent = null;

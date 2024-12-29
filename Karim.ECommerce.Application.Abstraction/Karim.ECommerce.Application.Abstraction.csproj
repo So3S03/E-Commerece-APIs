@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Karim.ECommerce.Domain\Karim.ECommerce.Domain.csproj" />
     <ProjectReference Include="..\Karim.ECommerce.Shared\Karim.ECommerce.Shared.csproj" />
   </ItemGroup>
 

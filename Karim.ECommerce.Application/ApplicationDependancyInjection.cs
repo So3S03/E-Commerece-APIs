@@ -3,6 +3,8 @@ using Karim.ECommerce.Application.Abstraction.ThirdPartyContracts;
 using Karim.ECommerce.Application.Mapper;
 using Karim.ECommerce.Application.Services;
 using Karim.ECommerce.Application.ThirdPartyServices;
+using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Infrastructure.Payment_Services;
 using Karim.ECommerce.Shared.AppSettingsModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,6 +51,14 @@ namespace Karim.ECommerce.Application
             {
                 return () => servicesProvider.GetRequiredService<IOrderServices>();
             });
+
+            services.AddScoped(typeof(IPaymentService), typeof(PaymentServices));
+            services.AddScoped(typeof(Func<IPaymentService>), serviceProvide =>
+            {
+                return () => serviceProvide.GetRequiredService<IPaymentService>();
+            });
+
+            services.Configure<StripeSettings>(configuration.GetSection("StripeSettings"));
 
             services.AddScoped(typeof(IServiceManager), typeof(ServiceManager));
             return services;
