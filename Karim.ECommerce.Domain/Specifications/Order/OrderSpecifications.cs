@@ -4,11 +4,19 @@ namespace Karim.ECommerce.Domain.Specifications.Order
 {
     public class OrderSpecifications : BaseSpecifications<OrderEntity, int>
     {
-        public OrderSpecifications(string buyerEmail)
+        public OrderSpecifications(string buyerEmailOrPaymentIntent, bool IsPaymentIntent = false)
         {
-            Criteria = O => O.BuyerEmail == buyerEmail;
-            IncludesMethod();
-            AddOrderByDesc(O => O.OrderDate);
+            if(IsPaymentIntent)
+            {
+                Criteria = O => O.PaymentIntentId == buyerEmailOrPaymentIntent;
+
+            }
+            else
+            {
+                Criteria = O => O.BuyerEmail == buyerEmailOrPaymentIntent;
+                IncludesMethod();
+                AddOrderByDesc(O => O.OrderDate);
+            }
         }
 
         public OrderSpecifications(string buyerEmail, int OrderId)

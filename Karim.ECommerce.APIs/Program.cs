@@ -91,6 +91,14 @@ namespace Karim.ECommerce.APIs
                         ClockSkew = TimeSpan.Zero
                     };
                 });
+
+            builder.Services.AddCors(corsOpt =>
+            {
+                corsOpt.AddPolicy("ECommercePolicy", policyBuilder =>
+                {
+                    policyBuilder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                });
+            });
             #endregion
 
             var app = builder.Build();
@@ -109,6 +117,8 @@ namespace Karim.ECommerce.APIs
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseCors("ECommercePolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();

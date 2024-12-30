@@ -1,4 +1,6 @@
-﻿namespace Karim.ECommerce.Application.Abstraction.Contracts
+﻿using Karim.ECommerce.Domain.Contracts;
+
+namespace Karim.ECommerce.Application.Abstraction.Contracts
 {
     public interface IServiceManager
     {
@@ -7,5 +9,6 @@
         public IAuthServices AuthServices { get; }
         public IWishListServices WishListServices { get; }
         public IOrderServices OrderServices { get; }
+        public IPaymentService PaymentServices { get; }
     }
 }

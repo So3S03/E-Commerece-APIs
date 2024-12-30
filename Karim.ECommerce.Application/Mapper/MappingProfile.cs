@@ -3,11 +3,9 @@ using Karim.ECommerce.Application.Abstraction.Dtos.Products;
 using Karim.ECommerce.Domain.Entities.Carts;
 using Karim.ECommerce.Domain.Entities.Orders;
 using Karim.ECommerce.Domain.Entities.Products;
-using Karim.ECommerce.Domain.Entities.WishList;
 using Karim.ECommerce.Shared.Dtos.Carts;
 using Karim.ECommerce.Shared.Dtos.Orders;
 using Karim.ECommerce.Shared.Dtos.Products;
-using Karim.ECommerce.Shared.Dtos.WishList;
 
 namespace Karim.ECommerce.Application.Mapper
 {

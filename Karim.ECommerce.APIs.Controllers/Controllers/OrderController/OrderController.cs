@@ -40,5 +40,12 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.OrderController
             var Result = await serviceManager.OrderServices.GetAllDeliveryMethodsAsync();
             return Ok(Result);
         }
+
+        [HttpGet("GetDeliveryMethodById/{id}")]
+        public async Task<ActionResult<DeliveryMethodDto>> GetDeliveryMethod(int id)
+        {
+            var Result = await serviceManager.OrderServices.GetDeliveryMethodByIdAsync(id);
+            return Ok(Result);
+        }
     }
 }
