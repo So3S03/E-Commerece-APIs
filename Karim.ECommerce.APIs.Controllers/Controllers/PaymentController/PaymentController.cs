@@ -15,5 +15,13 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.PaymentController
             var Result = await serviceManager.PaymentServices.CreateUpdatePaymentIntent(cartId);
             return Ok(Result);
         }
+
+        [HttpPost("WebHock")]
+        public async Task<ActionResult> WebHock()
+        {
+            var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
+            await serviceManager.PaymentServices.UpdateOrderPaymentStatus(json, Request.Headers["Stripe-Signature"]!);
+            return Ok();
+        }
     }
 }
