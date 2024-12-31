@@ -1,5 +1,6 @@
 ﻿using Karim.ECommerce.Shared.Dtos.Common;
 using Karim.ECommerce.Shared.Dtos.Security;
+using System.Security.Claims;
 
 namespace Karim.ECommerce.Application.Abstraction.Contracts
 {
@@ -16,5 +17,7 @@ namespace Karim.ECommerce.Application.Abstraction.Contracts
         Task<SuccessDto> VerifyCodeByEmailAsync(ResetCodeConfiramtionByEmailDto codeConfirmationDto);
         Task<SuccessDto> VerifyCodeByPhoneAsync(ResetCodeConfirmationByPhoneDto codeConfirmationDto);
         Task<UserDto> ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
+        Task<UserAddressDto> GetUserAddress(ClaimsPrincipal claimsPrincipal);
+        Task<UserAddressDto> UpdateUserAddress(ClaimsPrincipal claimsPrincipal, UserAddressDto addressDto);
     }
 }

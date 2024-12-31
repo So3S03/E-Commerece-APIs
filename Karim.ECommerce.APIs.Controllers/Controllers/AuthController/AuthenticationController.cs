@@ -2,6 +2,7 @@
 using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Shared.Dtos.Common;
 using Karim.ECommerce.Shared.Dtos.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Karim.ECommerce.APIs.Controllers.Controllers.AuthController
@@ -82,6 +83,22 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.AuthController
         public async Task<ActionResult<UserDto>> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             var Result = await serviceManager.AuthServices.ResetPasswordAsync(resetPasswordDto);
+            return Ok(Result);
+        }
+
+        [Authorize]
+        [HttpGet("GetUserAddress")]
+        public async Task<ActionResult<UserAddressDto>> GetUserAddress()
+        {
+            var Result = await serviceManager.AuthServices.GetUserAddress(User);
+            return Ok(Result);
+        }
+
+        [Authorize]
+        [HttpPut("UpdateUserAddress")]
+        public async Task<ActionResult<UserAddressDto>> UpdateUserAddress(UserAddressDto userAddressDto)
+        {
+            var Result = await serviceManager.AuthServices.UpdateUserAddress(User, userAddressDto);
             return Ok(Result);
         }
     }

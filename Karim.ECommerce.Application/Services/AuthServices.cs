@@ -1,5 +1,7 @@
-﻿using Karim.ECommerce.Application.Abstraction.Contracts;
+﻿using AutoMapper;
+using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Application.Abstraction.ThirdPartyContracts;
+using Karim.ECommerce.Application.Extensions;
 using Karim.ECommerce.Domain.Entities.Security;
 using Karim.ECommerce.Shared.AppSettingsModels;
 using Karim.ECommerce.Shared.Dtos.Common;
@@ -21,7 +23,8 @@ namespace Karim.ECommerce.Application.Services
         IEmailServices emailServices,
         ISmsServices smsServices,
         SignInManager<ApplicationUser> signInManager,
-        IOptions<JwtSettings> jwtSettings) : IAuthServices
+        IOptions<JwtSettings> jwtSettings,
+        IMapper mapper) : IAuthServices
     {
         private readonly JwtSettings _jwtSettings = jwtSettings.Value;
 
@@ -242,6 +245,29 @@ namespace Karim.ECommerce.Application.Services
                 Token = await GenerateJwtToken(User)
             };
             return MappedUser;
+        }
+
+        public async Task<UserAddressDto> GetUserAddress(ClaimsPrincipal claimsPrincipal)
+        {
+            var User = await userManager.FindUserWithAddress(claimsPrincipal);
+            if (User is null) throw new BadRequestException("There Is No User With This Email, You Are Not Logged In");
+            var AuthAddress = User.Address;
+            if (AuthAddress is null) throw new BadRequestException("There is No Address is Registered To This User");
+            var Address = mapper.Map<UserAddressDto>(AuthAddress);
+            return Address;
+        }
+
+        public async Task<UserAddressDto> UpdateUserAddress(ClaimsPrincipal claimsPrincipal, UserAddressDto addressDto)
+        {
+            var User = await userManager.FindUserWithAddress(claimsPrincipal);
+            if (User is null) throw new BadRequestException("There Is No User With This Email, You Are Not Logged In");
+            if (addressDto is null) throw new BadRequestException("The Address you Have Provided is Invalid");
+            var Address = mapper.Map<UserAddress>(addressDto);
+            if(User.Address is not null) Address.Id = User.Address.Id;
+            User.Address = Address;
+            var Result = await userManager.UpdateAsync(User);
+            if (!Result.Succeeded) throw new BadRequestException("Something Went Wrong While Updating The Database");
+            return addressDto;
         }
 
         private async Task<string> GenerateJwtToken(ApplicationUser user)
