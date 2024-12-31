@@ -17,6 +17,11 @@ namespace Karim.ECommerce.APIs.Middlewares
                     var Response = new ErrorResponse((int)HttpStatusCode.NotFound, $"The Requested End Point: {context.Request.Path.Value} is Not Found");
                     await context.Response.WriteAsync(Response.ToString());
                 }
+                else if(context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+                {
+                    var Response = new ErrorResponse((int)HttpStatusCode.Unauthorized);
+                    await context.Response.WriteAsync(Response.ToString());
+                }
             }
             catch (Exception ex)
             {

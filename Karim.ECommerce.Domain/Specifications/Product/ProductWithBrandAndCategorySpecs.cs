@@ -51,6 +51,11 @@ namespace Karim.ECommerce.Domain.Specifications.Product
         }
 
 
+        public ProductWithBrandAndCategorySpecs()
+        {
+            IncludesMethod(); 
+        }
+
 
         public ProductWithBrandAndCategorySpecs(int Id) //This For Getting Specific {Entity}
             :base(Id)

@@ -1,0 +1,1063 @@
+{
+	"info": {
+		"_postman_id": "45197c43-b57f-484c-9f64-5eee3fcac1d0",
+		"name": "ECommerce-APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32401369",
+		"_collection_link": "https://www.postman.com/route8-6827/workspace/my-ecommerce-apis/collection/32401369-45197c43-b57f-484c-9f64-5eee3fcac1d0?action=share&source=collection_link&creator=32401369"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Product/Products",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Product",
+								"Products"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "priceAsc",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "priceDesc",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "mostSelling",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "newProducts",
+									"disabled": true
+								},
+								{
+									"key": "brandId",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageIndex",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "oppo",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Product/ProductDetails/33",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Product",
+								"ProductDetails",
+								"33"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "Get All Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Product/Brands",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Product",
+								"Brands"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "pageIndex",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "20",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "x",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Brand",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Product/BrandDetails/27",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Product",
+								"BrandDetails",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Product/Categories",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Product",
+								"Categories"
+							],
+							"query": [
+								{
+									"key": "brandId",
+									"value": "27",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "E",
+									"disabled": true
+								},
+								{
+									"key": "pageIndex",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Product/CategoryDetails/11",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Product",
+								"CategoryDetails",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Get User Cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Cart/6d1c26e0-13ec-4ece-b7df-11fb1badebab",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Cart",
+								"6d1c26e0-13ec-4ece-b7df-11fb1badebab"
+							],
+							"query": [
+								{
+									"key": "cartId",
+									"value": "12",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create | Update User Cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\": \"109198db-eb69-4c9a-a78f-b08bd318b909\",\r\n    \"cartItems\": [\r\n        {\r\n            \"productId\": 3,\r\n            \"productName\": \"IPhone 16 Pro Max\",\r\n            \"pictureUrl\": \"Images/Products/iphone16ProMax-01.avif\",\r\n            \"price\": 77036.95,\r\n            \"quantity\": 2,\r\n            \"brand\": \"Apple\",\r\n            \"category\": \"Electronics\"\r\n        }\r\n    ],\r\n    \"paymentIntentId\": \"pi_3QbAhjLJcYOJjw0p15sAraio\",\r\n    \"clientSecret\": \"pi_3QbAhjLJcYOJjw0p15sAraio_secret_dtzuMTLsjiLVKzuLoXS6SWjyW\",\r\n    \"deliveryMethodId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Cart",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Cart/f88b9965-c808-475f-90e9-d0798c70d6b2",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Cart",
+								"f88b9965-c808-475f-90e9-d0798c70d6b2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let user = pm.response.json();\r",
+									"pm.test(\"Has Properties\", () => {\r",
+									"    pm.expect(user).to.have.property('userId');\r",
+									"    pm.expect(user).to.have.property('displayName');\r",
+									"    pm.expect(user).to.have.property('email');\r",
+									"    pm.expect(user).to.have.property('token');\r",
+									"})\r",
+									"if (pm.test(\"Has Properties\"))\r",
+									"{\r",
+									"    pm.collectionVariables.set('MyToken', user.token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\": \"ka2001rimahmed@gmail.com\",\r\n    \"password\": \"P@ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/Login",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"Login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let user = pm.response.json();\r",
+									"pm.test(\"Has Properties\", () => {\r",
+									"    pm.expect(user).to.have.property('userId');\r",
+									"    pm.expect(user).to.have.property('displayName');\r",
+									"    pm.expect(user).to.have.property('email');\r",
+									"    pm.expect(user).to.have.property('token');\r",
+									"})\r",
+									"if (pm.test(\"Has Properties\"))\r",
+									"{\r",
+									"    pm.collectionVariables.set('MyToken', user.token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"DisplayName\": \"Shady Karim\",\r\n    \"UserName\": \"Shady.Karim2025\",\r\n    \"Email\": \"shady2025karim@gmail.com\",\r\n    \"PhoneNumber\": \"01122334455\",\r\n    \"Password\": \"Shady@Karim2025\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/Register",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"Register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forget Password By Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\": \"ka2001rimahmed@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ForgetPasswordByEmail",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ForgetPasswordByEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Code By Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\": \"ka2001rimahmed@gmail.com\",\r\n    \"ResetCode\": 864249\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ResetCodeByEmail",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ResetCodeByEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forget Password By Phone Number",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PhoneNumber\": \"01122339429\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ForgetPasswordByPhone",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ForgetPasswordByPhone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Code By Phone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PhoneNumber\": \"01122339429\",\r\n    \"ResetCode\" : 437144\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ResetCodeByPhone",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ResetCodeByPhone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\": \"ka2001rimahmed@gmail.com\",\r\n    \"NewPassword\": \"P@ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ResetPassword",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ResetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Email Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\": \"ka2001rimahmed@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ConfirmEmailCode",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ConfirmEmailCode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirming Email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\": \"ka2001rimahmed@gmail.com\",\r\n    \"ConfirmationCode\": 349735\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ConfirmingEmail",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ConfirmingEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Phone Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PhoneNumber\": \"01122339429\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ConfirmPhoneCode",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ConfirmPhoneCode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirming Phone",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PhoneNumber\": \"01122339429\",\r\n    \"ConfirmationCode\": 802943\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/ConfirmingPhone",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"ConfirmingPhone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/GetUserAddress",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"GetUserAddress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\": \"Karim\",\r\n    \"LastName\": \"Fathy\",\r\n    \"Street\": \"Mekkawy\",\r\n    \"City\": \"Cairo\",\r\n    \"Country\": \"Egypt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Authentication/UpdateUserAddress",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Authentication",
+								"UpdateUserAddress"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wish List",
+			"item": [
+				{
+					"name": "Get User Wish List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/WishList/b744fb3f-71e0-4683-9d1b-32478bc2f245",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"WishList",
+								"b744fb3f-71e0-4683-9d1b-32478bc2f245"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create | Update User Wish List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"WishListId\": \"{{$guid}}\",\r\n    \"WishedProductsId\": [\r\n        {\r\n            \"ProductId\": 4\r\n        },\r\n        {\r\n            \"ProductId\": 5\r\n        },\r\n        {\r\n            \"ProductId\": 12\r\n        },\r\n        {\r\n            \"ProductId\": 20\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/WishList",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"WishList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User Wish List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/WishList/03c4491e-77fa-4a0c-ad31-0221804fef1f",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"WishList",
+								"03c4491e-77fa-4a0c-ad31-0221804fef1f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Wish List Items To Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/WishList?wishListId=b744fb3f-71e0-4683-9d1b-32478bc2f245&CartId=6d1c26e0-13ec-4ece-b7df-11fb1badebab",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"WishList"
+							],
+							"query": [
+								{
+									"key": "wishListId",
+									"value": "b744fb3f-71e0-4683-9d1b-32478bc2f245"
+								},
+								{
+									"key": "CartId",
+									"value": "6d1c26e0-13ec-4ece-b7df-11fb1badebab"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get All User Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Order/GetAllUserOrders",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Order",
+								"GetAllUserOrders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Order/GetOrder/2",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Order",
+								"GetOrder",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CartId\": \"109198db-eb69-4c9a-a78f-b08bd318b909\",\r\n    \"DeliveryMethod\": 1,\r\n    \"ShippingAddress\": {\r\n        \"FirstName\": \"Karim\",\r\n        \"LastName\": \"Fathy\",\r\n        \"Street\": \"Mekkawy\",\r\n        \"City\": \"Cairo\",\r\n        \"Country\": \"Egypt\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}Api/Order/CraeteOrder",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Order",
+								"CraeteOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Delivery Methods",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Order/GetAllDeliveryMethods",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Order",
+								"GetAllDeliveryMethods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Delivery Method By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Order/GetDeliveryMethodById/1",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Order",
+								"GetDeliveryMethodById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Create Payment Intent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}Api/Payment/109198db-eb69-4c9a-a78f-b08bd318b909",
+							"host": [
+								"{{BaseUrl}}Api"
+							],
+							"path": [
+								"Payment",
+								"109198db-eb69-4c9a-a78f-b08bd318b909"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl",
+			"value": "https://localhost:7184/"
+		},
+		{
+			"key": "MyToken",
+			"value": ""
+		}
+	]
+}

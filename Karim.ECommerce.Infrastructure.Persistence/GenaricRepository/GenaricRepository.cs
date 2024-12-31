@@ -1,4 +1,4 @@
-﻿using Karim.ECommerce.Domain.Contracts;
+﻿using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Domain.Entities._Base;
 using Karim.ECommerce.Infrastructure.Persistence._StoreDatabase;
 using Microsoft.EntityFrameworkCore;

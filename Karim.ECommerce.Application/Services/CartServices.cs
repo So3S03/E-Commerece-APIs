@@ -1,15 +1,20 @@
 ﻿using AutoMapper;
 using Karim.ECommerce.Application.Abstraction.Contracts;
-using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Contracts.Infrastructure;
+using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Domain.Entities.Carts;
+using Karim.ECommerce.Domain.Entities.Products;
+using Karim.ECommerce.Domain.Specifications.Product;
+using Karim.ECommerce.Shared.AppSettingsModels;
 using Karim.ECommerce.Shared.Dtos.Carts;
 using Karim.ECommerce.Shared.Exceptions;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Karim.ECommerce.Application.Services
 {
-    internal class CartServices(ICartRepository cartRepository, IProductServices productServices, IMapper mapper, IConfiguration configuration) : ICartServices
+    internal class CartServices(ICartRepository cartRepository, IUnitOfWork unitOfWork, IMapper mapper, IOptions<RedisSettings> redisSettings) : ICartServices
     {
+        private readonly RedisSettings _redisSettings = redisSettings.Value;
         public async Task<CartToReturnDto> GetUserCartAsync(string? cartId)
         {
             if (cartId is null) throw new BadRequestException("The CartId: {cartId} You Have Provid is not Valid");
@@ -24,23 +29,25 @@ namespace Karim.ECommerce.Application.Services
             var cart = mapper.Map<Cart>(cartToReturnDto);
             //I Can't Relay On The Data That Came From Client So I Will Trust Only (ProductId, Quantity) To ReCreate The CartItems
             var RealProducts = new List<CartItem>();
-            foreach (var Product in cart.CartItems)
+            var ProductSpec = new ProductWithBrandAndCategorySpecs();
+            var ProductsList = await unitOfWork.GetRepository<Product, int>().GetAllAsyncWithSpecs(ProductSpec);
+;            foreach (var Product in cart.CartItems)
             {
-                var RealProduct = await productServices.GetProductByIdAsync(Product.ProductId);
+                var RealProduct = ProductsList.Where(P => P.Id == Product.ProductId).FirstOrDefault();
                 var cartItem = new CartItem()
                 {
-                    ProductId = RealProduct.Id,
+                    ProductId = RealProduct!.Id,
                     ProductName = RealProduct.ProductName,
                     PictureUrl = RealProduct.MainImage,
                     Price = RealProduct.Price,
                     Quantity = Product.Quantity,
-                    Brand = RealProduct.Brand,
-                    Category = RealProduct.Category
+                    Brand = RealProduct.Brand!.BrandName,
+                    Category = RealProduct.Category!.CategoryName
                 };
                 RealProducts.Add(cartItem);
             }
             cart.CartItems = RealProducts;
-            var updatedCart = await cartRepository.UpdateCartAsync(cart, TimeSpan.FromDays(double.Parse(configuration.GetSection("RedisSettings")["CartExpiredTimeSpan"]!)));
+            var updatedCart = await cartRepository.UpdateCartAsync(cart, TimeSpan.FromDays(_redisSettings.CartExpiredTimeSpan));
             if (updatedCart is null) throw new BadRequestException("Cannot Update Your Cart, Something Went Wrong");
             return mapper.Map<CartToReturnDto>(cart);
         }
