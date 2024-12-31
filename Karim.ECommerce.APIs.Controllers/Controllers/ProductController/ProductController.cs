@@ -1,4 +1,5 @@
 ﻿using Karim.ECommerce.APIs.Controllers.Controllers._BaseController;
+using Karim.ECommerce.APIs.Controllers.Filters;
 using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Application.Abstraction.Dtos.Products;
 using Karim.ECommerce.Shared.Dtos.Common;
@@ -9,6 +10,7 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.ProductController
 {
     public class ProductController(IServiceManager serviceManager) : ApiControllerBase
     {
+        [Cached(timeToLiveInSec: 600)]
         [HttpGet("Products")]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetAllProduct([FromQuery] ProductSpecParams specParams)
         {
@@ -23,6 +25,7 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.ProductController
             return Ok(Product);
         }
 
+        [Cached(timeToLiveInSec: 600)]
         [HttpGet("Brands")]
         public async Task<ActionResult> GetAllBrands([FromQuery] BrandSpecParams specParams)
         {
@@ -37,6 +40,7 @@ namespace Karim.ECommerce.APIs.Controllers.Controllers.ProductController
             return Ok(Brand);
         }
 
+        [Cached(timeToLiveInSec: 600)]
         [HttpGet("Categories")]
         public async Task<ActionResult> GetAllCategories([FromQuery] CategorySpecParams specParams)
         {

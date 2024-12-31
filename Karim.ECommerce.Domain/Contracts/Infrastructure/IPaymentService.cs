@@ -1,6 +1,6 @@
 ﻿using Karim.ECommerce.Shared.Dtos.Carts;
 
-namespace Karim.ECommerce.Domain.Contracts
+namespace Karim.ECommerce.Domain.Contracts.Infrastructure
 {
     public interface IPaymentService
     {

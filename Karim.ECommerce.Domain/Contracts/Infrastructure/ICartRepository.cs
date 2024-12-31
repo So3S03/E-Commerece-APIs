@@ -1,6 +1,6 @@
 ﻿using Karim.ECommerce.Domain.Entities.Carts;
 
-namespace Karim.ECommerce.Domain.Contracts
+namespace Karim.ECommerce.Domain.Contracts.Infrastructure
 {
     public interface ICartRepository
     {

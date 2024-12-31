@@ -4,7 +4,7 @@ using Karim.ECommerce.APIs.Extensions;
 using Karim.ECommerce.APIs.Middlewares;
 using Karim.ECommerce.APIs.Services;
 using Karim.ECommerce.Application;
-using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Domain.Entities.Security;
 using Karim.ECommerce.Infrastructure;
 using Karim.ECommerce.Infrastructure.Persistence;

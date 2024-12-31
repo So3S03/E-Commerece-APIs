@@ -1,4 +1,4 @@
-﻿using Karim.ECommerce.Domain.Contracts;
+﻿using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Infrastructure.Persistence._SecurityDatabase;
 using Karim.ECommerce.Infrastructure.Persistence._StoreDatabase;
 using Karim.ECommerce.Infrastructure.Persistence._StoreDatabase.Interceptors;

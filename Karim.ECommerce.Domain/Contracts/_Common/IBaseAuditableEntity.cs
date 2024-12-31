@@ -1,4 +1,4 @@
-﻿namespace Karim.ECommerce.Domain.Contracts
+﻿namespace Karim.ECommerce.Domain.Contracts._Common
 {
     public interface IBaseAuditableEntity
     {

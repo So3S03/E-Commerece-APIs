@@ -3,7 +3,7 @@ using Karim.ECommerce.Application.Abstraction.ThirdPartyContracts;
 using Karim.ECommerce.Application.Mapper;
 using Karim.ECommerce.Application.Services;
 using Karim.ECommerce.Application.ThirdPartyServices;
-using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Contracts.Infrastructure;
 using Karim.ECommerce.Infrastructure.Payment_Services;
 using Karim.ECommerce.Shared.AppSettingsModels;
 using Microsoft.Extensions.Configuration;

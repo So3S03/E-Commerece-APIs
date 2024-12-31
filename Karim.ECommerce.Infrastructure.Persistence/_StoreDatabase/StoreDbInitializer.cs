@@ -1,4 +1,4 @@
-﻿using Karim.ECommerce.Domain.Contracts;
+﻿using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Domain.Entities.Orders;
 using Karim.ECommerce.Domain.Entities.Products;
 using Karim.ECommerce.Infrastructure.Persistence._Common;
