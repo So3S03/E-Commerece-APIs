@@ -1,4 +1,4 @@
-﻿using Karim.ECommerce.Domain.Contracts;
+﻿using Karim.ECommerce.Domain.Contracts.Infrastructure;
 using Karim.ECommerce.Domain.Entities.WishList;
 using StackExchange.Redis;
 using System.Text.Json;

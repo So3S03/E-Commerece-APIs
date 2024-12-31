@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Karim.ECommerce.Application.Abstraction.Contracts;
 using Karim.ECommerce.Application.Abstraction.Dtos.Products;
-using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Domain.Entities.Products;
 using Karim.ECommerce.Domain.Specifications.Brand;
 using Karim.ECommerce.Domain.Specifications.Category;

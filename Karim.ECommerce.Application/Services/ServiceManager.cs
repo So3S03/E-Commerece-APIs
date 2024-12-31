@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Karim.ECommerce.Application.Abstraction.Contracts;
-using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Contracts.Infrastructure;
+using Karim.ECommerce.Domain.Contracts.Persistence;
 
 namespace Karim.ECommerce.Application.Services
 {

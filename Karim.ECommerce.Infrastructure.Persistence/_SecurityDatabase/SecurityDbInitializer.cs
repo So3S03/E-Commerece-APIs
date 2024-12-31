@@ -1,4 +1,4 @@
-﻿using Karim.ECommerce.Domain.Contracts;
+﻿using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Domain.Entities.Security;
 using Karim.ECommerce.Infrastructure.Persistence._Common;
 using Microsoft.AspNetCore.Identity;

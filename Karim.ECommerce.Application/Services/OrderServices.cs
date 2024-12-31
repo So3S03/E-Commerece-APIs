@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Karim.ECommerce.Application.Abstraction.Contracts;
-using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Contracts.Infrastructure;
+using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Domain.Entities.Carts;
 using Karim.ECommerce.Domain.Entities.Orders;
 using Karim.ECommerce.Domain.Specifications.Order;

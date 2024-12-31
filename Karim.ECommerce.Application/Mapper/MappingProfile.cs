@@ -3,9 +3,11 @@ using Karim.ECommerce.Application.Abstraction.Dtos.Products;
 using Karim.ECommerce.Domain.Entities.Carts;
 using Karim.ECommerce.Domain.Entities.Orders;
 using Karim.ECommerce.Domain.Entities.Products;
+using Karim.ECommerce.Domain.Entities.Security;
 using Karim.ECommerce.Shared.Dtos.Carts;
 using Karim.ECommerce.Shared.Dtos.Orders;
 using Karim.ECommerce.Shared.Dtos.Products;
+using Karim.ECommerce.Shared.Dtos.Security;
 
 namespace Karim.ECommerce.Application.Mapper
 {
@@ -46,7 +48,9 @@ namespace Karim.ECommerce.Application.Mapper
             CreateMap<OrderItem, OrderItemDto>();
             CreateMap<OrderAddress, OrderAddressDto>().ReverseMap();
             CreateMap<DeliveryMethod, DeliveryMethodDto>();
-            
+
+            //Security
+            CreateMap<UserAddress, UserAddressDto>().ReverseMap();
         }
     }
 }

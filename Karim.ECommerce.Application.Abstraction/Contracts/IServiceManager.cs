@@ -1,4 +1,4 @@
-﻿using Karim.ECommerce.Domain.Contracts;
+﻿using Karim.ECommerce.Domain.Contracts.Infrastructure;
 
 namespace Karim.ECommerce.Application.Abstraction.Contracts
 {

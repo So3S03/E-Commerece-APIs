@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Contracts._Common;
 
 namespace Karim.ECommerce.Domain.Entities._Base
 {

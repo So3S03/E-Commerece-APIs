@@ -1,6 +1,6 @@
 ﻿using Karim.ECommerce.Domain.Entities._Base;
 
-namespace Karim.ECommerce.Domain.Contracts
+namespace Karim.ECommerce.Domain.Contracts.Persistence
 {
     public interface IUnitOfWork : IAsyncDisposable
     {

@@ -1,8 +1,8 @@
 ﻿using Karim.ECommerce.Domain.Entities._Base;
 
-namespace Karim.ECommerce.Domain.Contracts
+namespace Karim.ECommerce.Domain.Contracts.Persistence
 {
-    public interface IGenaricRepository<TEntity,TKey>
+    public interface IGenaricRepository<TEntity, TKey>
         where TEntity : BaseEntity<TKey>
         where TKey : IEquatable<TKey>
     {

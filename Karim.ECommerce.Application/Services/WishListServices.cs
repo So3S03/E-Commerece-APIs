@@ -1,5 +1,6 @@
 ﻿using Karim.ECommerce.Application.Abstraction.Contracts;
-using Karim.ECommerce.Domain.Contracts;
+using Karim.ECommerce.Domain.Contracts.Infrastructure;
+using Karim.ECommerce.Domain.Contracts.Persistence;
 using Karim.ECommerce.Domain.Entities.WishList;
 using Karim.ECommerce.Shared.Dtos.Carts;
 using Karim.ECommerce.Shared.Dtos.Common;

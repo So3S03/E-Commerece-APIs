@@ -1,6 +1,6 @@
 ﻿using Karim.ECommerce.Domain.Entities.WishList;
 
-namespace Karim.ECommerce.Domain.Contracts
+namespace Karim.ECommerce.Domain.Contracts.Infrastructure
 {
     public interface IWishListRepository
     {
